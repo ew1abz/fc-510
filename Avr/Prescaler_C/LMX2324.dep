@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>977299856</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Main.r90</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg0t.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\iotiny25.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgtiny25.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\LMX2324.pbd</file>
+      <file>$PROJ_DIR$\Debug\Exe\LMX2324.hex</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Main.c</file>
+      <file>$PROJ_DIR$\Debug\List\Main.lst</file>
+      <file>$PROJ_DIR$\Debug\Obj\Main.pbi</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\LMX2324.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 10</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\LMX2324.hex</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 4 2 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 9 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 3 0 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3 0 7</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

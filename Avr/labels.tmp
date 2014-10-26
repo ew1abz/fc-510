@@ -1,0 +1,30 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.42</VERSION>
+ <DEVICE>ATtiny12</DEVICE>
+ <WORKING_DIR>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes\tn12def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.map</FILE>
+  <FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.lst</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <Main><FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</FILE><LINE>96</LINE></Main>
+  <SPI_Load><FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</FILE><LINE>119</LINE></SPI_Load>
+  <Loop><FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</FILE><LINE>122</LINE></Loop>
+  <data1><FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</FILE><LINE>129</LINE></data1>
+  <data0><FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</FILE><LINE>126</LINE></data0>
+  <dataX><FILE>d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm</FILE><LINE>131</LINE></dataX>
+ </LABELS>
+</ASSEMBLER_INFO>

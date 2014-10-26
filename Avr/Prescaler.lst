@@ -1,0 +1,477 @@
+
+AVRASM ver. 2.1.42  d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm Thu Mar 07 16:31:25 2013
+
+d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm(17): Including file 'C:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes\tn12def.inc'
+                 
+                 
+                 
+                 ;Title	: FC-510 prescaler (LMX2324)
+                 ;Version: 1.00
+                 ;Target	: ATtiny12
+                 ;Author	: wubblick@yahoo.com
+                 
+                 ;AVR Assembler 2.0
+                 
+                 ;Fuse bits:
+                 
+                 ;Int RCosc, Startup 4.2ms + 6 CK
+                 ;No BOD function
+                 
+                 ;----------------------------------------------------------------------------
+                 
+                 .include "tn12def.inc"
+                 
+                 ;***** Created: 2010-08-20 14:22 ******* Source: ATtiny12.xml ************
+                 ;*************************************************************************
+                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                 ;* 
+                 ;* Number            : AVR000
+                 ;* File Name         : "tn12def.inc"
+                 ;* Title             : Register/Bit Definitions for the ATtiny12
+                 ;* Date              : 2010-08-20
+                 ;* Version           : 2.35
+                 ;* Support E-mail    : avr@atmel.com
+                 ;* Target MCU        : ATtiny12
+                 ;* 
+                 ;* DESCRIPTION
+                 ;* When including this file in the assembly program file, all I/O register 
+                 ;* names and I/O register bit names appearing in the data book can be used.
+                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                 ;* SRAM is also defined 
+                 ;* 
+                 ;* The Register names are represented by their hexadecimal address.
+                 ;* 
+                 ;* The Register Bit names are represented by their bit number (0-7).
+                 ;* 
+                 ;* Please observe the difference in using the bit names with instructions
+                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                 ;* (skip if bit in register set/cleared). The following example illustrates
+                 ;* this:
+                 ;* 
+                 ;* in    r16,PORTB             ;read PORTB latch
+                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                 ;* out   PORTB,r16             ;output to PORTB
+                 ;* 
+                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                 ;* rjmp  TOV0_is_set           ;jump if set
+                 ;* ...                         ;otherwise do something else
+                 ;*************************************************************************
+                 
+                 #ifndef _TN12DEF_INC_
+                 #define _TN12DEF_INC_
+                 
+                 
+                 #pragma partinc 0
+                 
+                 ; ***** SPECIFY DEVICE ***************************************************
+                 .device ATtiny12
+                 #pragma AVRPART ADMIN PART_NAME ATtiny12
+                 .equ	SIGNATURE_000	= 0x1e
+                 .equ	SIGNATURE_001	= 0x90
+                 .equ	SIGNATURE_002	= 0x05
+                 
+                 #pragma AVRPART CORE CORE_VERSION V0E
+                 
+                 
+                 ; ***** I/O REGISTER DEFINITIONS *****************************************
+                 ; NOTE:
+                 ; Definitions marked "MEMORY MAPPED"are extended I/O ports
+                 ; and cannot be used with IN/OUT instructions
+                 .equ	SREG	= 0x3f
+                 .equ	GIMSK	= 0x3b
+                 .equ	GIFR	= 0x3a
+                 .equ	TIMSK	= 0x39
+                 .equ	TIFR	= 0x38
+                 .equ	MCUCR	= 0x35
+                 .equ	MCUSR	= 0x34
+                 .equ	TCCR0	= 0x33
+                 .equ	TCNT0	= 0x32
+                 .equ	OSCCAL	= 0x31
+                 .equ	WDTCR	= 0x21
+                 .equ	EEAR	= 0x1e
+                 .equ	EEDR	= 0x1d
+                 .equ	EECR	= 0x1c
+                 .equ	PORTB	= 0x18
+                 .equ	DDRB	= 0x17
+                 .equ	PINB	= 0x16
+                 .equ	ACSR	= 0x08
+                 
+                 
+                 ; ***** BIT DEFINITIONS **************************************************
+                 
+                 ; ***** ANALOG_COMPARATOR ************
+                 ; ACSR - Analog Comparator Control And Status Register
+                 .equ	ACIS0	= 0	; Analog Comparator Interrupt Mode Select bit 0
+                 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
+                 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
+                 .equ	ACI	= 4	; Analog Comparator Interrupt Flag
+                 .equ	ACO	= 5	; Analog Comparator Output
+                 .equ	AINBG	= 6	; Analog Comparator Bandgap Select
+                 .equ	ACD	= 7	; Analog Comparator Disable
+                 
+                 
+                 ; ***** CPU **************************
+                 ; SREG - Status Register
+                 .equ	SREG_C	= 0	; Carry Flag
+                 .equ	SREG_Z	= 1	; Zero Flag
+                 .equ	SREG_N	= 2	; Negative Flag
+                 .equ	SREG_V	= 3	; Two's Complement Overflow Flag
+                 .equ	SREG_S	= 4	; Sign Bit
+                 .equ	SREG_H	= 5	; Half Carry Flag
+                 .equ	SREG_T	= 6	; Bit Copy Storage
+                 .equ	SREG_I	= 7	; Global Interrupt Enable
+                 
+                 ; MCUCR - MCU Control Register
+                 .equ	ISC00	= 0	; Interrupt Sense Control 0 bit 0
+                 .equ	ISC01	= 1	; Interrupt Sense Control 0 bit 1
+                 .equ	SM	= 4	; Sleep Mode
+                 .equ	SE	= 5	; Sleep Enable
+                 .equ	PUD	= 6	; Pull-up Disable
+                 
+                 ; MCUSR - MCU Status register
+                 .equ	PORF	= 0	; Power-On Reset Flag
+                 .equ	EXTRF	= 1	; External Reset Flag
+                 .equ	BORF	= 2	; Brown-out Reset Flag
+                 .equ	WDRF	= 3	; Watchdog Reset Flag
+                 
+                 ; OSCCAL - Status Register
+                 .equ	CAL0	= 0	; Oscillator Calibration Value Bit 0
+                 .equ	CAL1	= 1	; Oscillator Calibration Value Bit 1
+                 .equ	CAL2	= 2	; Oscillator Calibration Value Bit 2
+                 .equ	CAL3	= 3	; Oscillator Calibration Value Bit 3
+                 .equ	CAL4	= 4	; Oscillator Calibration Value Bit 4
+                 .equ	CAL5	= 5	; Oscillator Calibration Value Bit 5
+                 .equ	CAL6	= 6	; Oscillator Calibration Value Bit 6
+                 .equ	CAL7	= 7	; Oscillator Calibration Value Bit 7
+                 
+                 
+                 ; ***** EXTERNAL_INTERRUPT ***********
+                 ; GIMSK - General Interrupt Mask Register
+                 .equ	PCIE	= 5	; Pin Change Interrupt Enable
+                 .equ	INT0	= 6	; External Interrupt Request 0 Enable
+                 
+                 ; GIFR - General Interrupt Flag register
+                 .equ	PCIF	= 5	; Pin Change Interrupt Flag
+                 .equ	INTF0	= 6	; External Interrupt Flag 0
+                 
+                 
+                 ; ***** EEPROM ***********************
+                 ; EEAR - EEPROM Read/Write Access
+                 .equ	EEAR0	= 0	; EEPROM Read/Write Access bit 0
+                 .equ	EEAR1	= 1	; EEPROM Read/Write Access bit 1
+                 .equ	EEAR2	= 2	; EEPROM Read/Write Access bit 2
+                 .equ	EEAR3	= 3	; EEPROM Read/Write Access bit 3
+                 .equ	EEAR4	= 4	; EEPROM Read/Write Access bit 4
+                 .equ	EEAR5	= 5	; EEPROM Read/Write Access bit 5
+                 
+                 ; EEDR - EEPROM Data Register
+                 .equ	EEDR0	= 0	; EEPROM Data Register bit 0
+                 .equ	EEDR1	= 1	; EEPROM Data Register bit 1
+                 .equ	EEDR2	= 2	; EEPROM Data Register bit 2
+                 .equ	EEDR3	= 3	; EEPROM Data Register bit 3
+                 .equ	EEDR4	= 4	; EEPROM Data Register bit 4
+                 .equ	EEDR5	= 5	; EEPROM Data Register bit 5
+                 .equ	EEDR6	= 6	; EEPROM Data Register bit 6
+                 .equ	EEDR7	= 7	; EEPROM Data Register bit 7
+                 
+                 ; EECR - EEPROM Control Register
+                 .equ	EERE	= 0	; EEPROM Read Enable
+                 .equ	EEWE	= 1	; EEPROM Write Enable
+                 .equ	EEMWE	= 2	; EEPROM Master Write Enable
+                 .equ	EERIE	= 3	; EEProm Ready Interrupt Enable
+                 
+                 
+                 ; ***** PORTB ************************
+                 ; PORTB - Data Register, Port B
+                 .equ	PORTB0	= 0	; 
+                 .equ	PB0	= 0	; For compatibility
+                 .equ	PORTB1	= 1	; 
+                 .equ	PB1	= 1	; For compatibility
+                 .equ	PORTB2	= 2	; 
+                 .equ	PB2	= 2	; For compatibility
+                 .equ	PORTB3	= 3	; 
+                 .equ	PB3	= 3	; For compatibility
+                 .equ	PORTB4	= 4	; 
+                 .equ	PB4	= 4	; For compatibility
+                 
+                 ; DDRB - Data Direction Register, Port B
+                 .equ	DDB0	= 0	; 
+                 .equ	DDB1	= 1	; 
+                 .equ	DDB2	= 2	; 
+                 .equ	DDB3	= 3	; 
+                 .equ	DDB4	= 4	; 
+                 .equ	DDB5	= 5	; 
+                 
+                 ; PINB - Input Pins, Port B
+                 .equ	PINB0	= 0	; 
+                 .equ	PINB1	= 1	; 
+                 .equ	PINB2	= 2	; 
+                 .equ	PINB3	= 3	; 
+                 .equ	PINB4	= 4	; 
+                 .equ	PINB5	= 5	; 
+                 
+                 
+                 ; ***** TIMER_COUNTER_0 **************
+                 ; TIMSK - Timer/Counter Interrupt Mask Register
+                 .equ	TOIE0	= 1	; Timer/Counter0 Overflow Interrupt Enable
+                 
+                 ; TIFR - Timer/Counter Interrupt Flag register
+                 .equ	TOV0	= 1	; Timer/Counter0 Overflow Flag
+                 
+                 ; TCCR0 - Timer/Counter0 Control Register
+                 .equ	CS00	= 0	; Clock Select0 bit 0
+                 .equ	CS01	= 1	; Clock Select0 bit 1
+                 .equ	CS02	= 2	; Clock Select0 bit 2
+                 
+                 ; TCNT0 - Timer Counter 0
+                 .equ	TCNT00	= 0	; Timer Counter 0 bit 0
+                 .equ	TCNT01	= 1	; Timer Counter 0 bit 1
+                 .equ	TCNT02	= 2	; Timer Counter 0 bit 2
+                 .equ	TCNT03	= 3	; Timer Counter 0 bit 3
+                 .equ	TCNT04	= 4	; Timer Counter 0 bit 4
+                 .equ	TCNT05	= 5	; Timer Counter 0 bit 5
+                 .equ	TCNT06	= 6	; Timer Counter 0 bit 6
+                 .equ	TCNT07	= 7	; Timer Counter 0 bit 7
+                 
+                 
+                 ; ***** WATCHDOG *********************
+                 ; WDTCR - Watchdog Timer Control Register
+                 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
+                 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
+                 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
+                 .equ	WDE	= 3	; Watch Dog Enable
+                 .equ	WDTOE	= 4	; RW
+                 .equ	WDDE	= WDTOE	; For compatibility
+                 
+                 
+                 
+                 ; ***** LOCKSBITS ********************************************************
+                 .equ	LB1	= 0	; Lockbit
+                 .equ	LB2	= 1	; Lockbit
+                 
+                 
+                 ; ***** FUSES ************************************************************
+                 ; LOW fuse bits
+                 
+                 
+                 
+                 ; ***** CPU REGISTER DEFINITIONS *****************************************
+                 .def	XH	= r27
+                 .def	XL	= r26
+                 .def	YH	= r29
+                 .def	YL	= r28
+                 .def	ZH	= r31
+                 .def	ZL	= r30
+                 
+                 
+                 
+                 ; ***** DATA MEMORY DECLARATIONS *****************************************
+                 .equ	FLASHEND	= 0x01ff	; Note: Word address
+                 .equ	IOEND	= 0x003f
+                 .equ	SRAM_SIZE	= 0
+                 .equ	RAMEND	= 0x0000
+                 .equ	XRAMEND	= 0x0000
+                 .equ	E2END	= 0x003f
+                 .equ	EEPROMEND	= 0x003f
+                 .equ	EEADRBITS	= 6
+                 #pragma AVRPART MEMORY PROG_FLASH 1024
+                 #pragma AVRPART MEMORY EEPROM 64
+                 #pragma AVRPART MEMORY INT_SRAM SIZE 0
+                 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x0
+                 
+                 
+                 
+                 
+                 
+                 ; ***** INTERRUPT VECTORS ************************************************
+                 .equ	INT0addr	= 0x0001	; External Interrupt 0
+                 .equ	PCI0addr	= 0x0002	; External Interrupt Request 0
+                 .equ	OVF0addr	= 0x0003	; Timer/Counter0 Overflow
+                 .equ	ERDYaddr	= 0x0004	; EEPROM Ready
+                 .equ	ACIaddr	= 0x0005	; Analog Comparator
+                 
+                 .equ	INT_VECTORS_SIZE	= 6	; size in words
+                 
+                 #pragma AVRPART CORE INSTRUCTIONS_NOT_SUPPORTED break
+                 
+                 #endif  /* _TN12DEF_INC_ */
+                 
+                 ; ***** END OF FILE ******************************************************
+                 
+                 ;----------------------------------------------------------------------------
+                 
+                 ;Константы:
+                 
+                 .equ N = 256   ;желаемый коэффициент деления
+                 
+                 .equ PRE = 32  ;коэффициент деления встроенного прескалера
+                 .equ NR = 2    ;коэффициент деления Ref (не используется)
+                 .equ NB = (N / PRE)
+                 .equ NA = (N - NB * PRE)
+                 .if (NA > NB) || (NB < 3) || (NB > 1023)
+                 .endif
+                 
+                 ;Биты регистра R:
+                 
+                 .equ TEST    = (1 << 14) ;режим тестирования
+                 .equ RS      = (1 << 13) ;зарезервированный бит
+                 .equ PD_POL  = (1 << 12) ;вывод счетчика N
+                 .equ CP_TRI  = (1 << 11) ;в режиме тестирования всегда =1
+                 .equ R_CNTR  = (NR << 1) ;значение счетчика R (2..1023)
+                 .equ R_ADDR  = (1 << 0)  ;адрес регистра R
+                 
+                 ;Биты регистра N:
+                 
+                 .equ NB_CNTR = (NB << 8) ;значение счетчика NA (0..31, NA <= NB)
+                 .equ NA_CNTR = (NA << 3) ;значение счетчика NB (3..1023)
+                 .equ CNT_RST = (1 << 2)  ;режим сброса счетчиков
+                 .equ PWDN    = (1 << 1)  ;режим power down
+                 .equ N_ADDR  = (0 << 0)  ;адрес регистра N
+                 
+                 ;Код для загрузки в регистр R:
+                 
+                 .equ REG_R = TEST | PD_POL | CP_TRI | R_CNTR | R_ADDR
+                 
+                 ;Код для загрузки в регистр N:
+                 
+                 .equ REG_N = NB_CNTR | NA_CNTR | N_ADDR
+                 
+                 ;----------------------------------------------------------------------------
+                 
+                 ;Ports definition:
+                 
+                 .equ SDATA  = PB0 ;сигнал SDATA
+                 .equ LE     = PB1 ;сигнал LE
+                 .equ SCLK   = PB2 ;сигнал SCLK
+                 .equ NCPB3  = PB3
+                 .equ NCPB4  = PB4
+                 
+                 ;Направление порта B:
+                 .equ DIRB   = (1 << SDATA) | (1 << LE) | (1 << SCLK)
+                 ;Начальное состояние/пуллапы:
+                 .equ PUPB   = 0xFF
+                 
+                 ;----------------------------------------------------------------------------
+                 
+                 ;Глобальные регистровые переменные:
+                 
+                 .def tempL = r16
+                 .def tempM = r17
+                 .def tempH = r18
+                 .def Cnt   = r19
+                 
+                 ;----------------------------------------------------------------------------
+                 
+                 .CSEG
+                 .org 0
+                 
+                 ;Инициализация:
+                 
+000000 ef0f      	ldi	tempL,PUPB
+000001 bb08      	out	PORTB,tempL
+000002 e007      	ldi	tempL,DIRB	
+000003 bb07      	out	DDRB,tempL
+                 
+                 ;Основная программа:
+                 
+                 Main:
+                 
+                 ;Загрузка регистра N:
+                 
+000004 e000      	ldi tempL,byte1(REG_N)
+000005 e018      	ldi tempM,byte2(REG_N)
+000006 e020      	ldi tempH,byte3(REG_N)
+000007 d006      	rcall SPI_Load
+                 
+                 ;Загрузка регистра R:
+                 
+000008 e005      	ldi tempL,byte1(REG_R)
+000009 e518      	ldi tempM,byte2(REG_R)
+00000a e020      	ldi tempH,byte3(REG_R)
+00000b d002      	rcall SPI_Load
+                 
+00000c 9588      	sleep
+00000d cff6      	rjmp Main
+                 
+                 ;----------------------------------------------------------------------------
+                 
+                 ;Загрузка слова 18 бит из tempH:tempM:tempL по SPI:
+                 
+                 SPI_Load:
+00000e 98c1      	cbi	PORTB,LE    ;LE = 0
+00000f e132      	ldi Cnt,18
+                 Loop:
+000010 98c2      	cbi	PORTB,SCLK  ;SCLK = 0
+000011 fd21      	sbrc tempH,1
+000012 c002      	rjmp data1
+                 data0:
+000013 98c0      	cbi	PORTB,SDATA ;SDATA = 0 или
+000014 c001      	rjmp dataX
+                 data1:
+000015 9ac0      	sbi	PORTB,SDATA ;SDATA = 1
+                 dataX:
+000016 0f00          lsl TempL 
+000017 1f11      	rol TempM
+000018 1f22      	rol TempH
+000019 9ac2      	sbi	PORTB,SCLK  ;SCLK = 1
+00001a 953a      	dec	Cnt
+00001b f7a1      	brne Loop
+                 
+00001c 9ac0      	sbi	PORTB,SDATA ;SDATA = 1
+00001d 9ac1      	sbi	PORTB,LE    ;LE = 1
+00001e 9508      	ret
+                 
+                 ;----------------------------------------------------------------------------
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+ATtiny12 register use summary:
+r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
+r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 r13:   0 r14:   0 r15:   0 
+r16:   7 r17:   3 r18:   4 r19:   2 r20:   0 r21:   0 r22:   0 r23:   0 
+r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 r29:   0 r30:   0 r31:   0 
+x  :   0 y  :   0 z  :   0 
+Registers used: 4 out of 35 (11.4%)
+
+ATtiny12 instruction use summary:
+adc   :   0 add   :   0 and   :   0 andi  :   0 asr   :   0 bclr  :   0 
+bld   :   0 brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 breq  :   0 
+brge  :   0 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 
+brlt  :   0 brmi  :   0 brne  :   1 brpl  :   0 brsh  :   0 brtc  :   0 
+brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 cbi   :   3 
+cbr   :   0 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 
+cls   :   0 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 
+cpc   :   0 cpi   :   0 cpse  :   0 dec   :   1 eor   :   0 in    :   0 
+inc   :   0 ld    :   0 ldi   :   9 lpm   :   0 lsl   :   1 lsr   :   0 
+mov   :   0 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   2 
+rcall :   2 ret   :   1 reti  :   0 rjmp  :   3 rol   :   2 ror   :   0 
+sbc   :   0 sbci  :   0 sbi   :   4 sbic  :   0 sbis  :   0 sbr   :   0 
+sbrc  :   1 sbrs  :   0 sec   :   0 seh   :   0 sei   :   0 sen   :   0 
+ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   1 
+st    :   0 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
+
+Instructions used: 13 out of 90 (14.4%)
+
+ATtiny12 memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x00003e     62      0     62    1024   6.1%
+[.dseg] 0x000000 0x000060      0      0      0       0      -
+[.eseg] 0x000000 0x000000      0      0      0      64   0.0%
+
+Assembly complete, 0 errors, 0 warnings

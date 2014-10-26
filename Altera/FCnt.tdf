@@ -1,0 +1,125 @@
+constant INPW = 8;	-- input frequency counter resolution, bits
+constant REFW = 8;	-- reference frequency counter resolution, bits
+constant INTW = 8;	-- interpolator counter resolution, bits
+ 
+subdesign FCnt
+(
+   	Fref            	: input;    -- reference frequency input (12.8 MHz)
+	Fin					: input;	-- input frequency
+	nReset				: input;	-- reset pin
+	QFin				: output;	-- input frequency counter out
+	QFref				: output;	-- reference frequency counter out
+	GateIn				: input;	-- counters gate
+	PulseOut			: output;	-- pulse to stretch
+	PulseIn				: input;	-- stretched pulse
+	CalibIn				: input;	-- stretcher calibrate input
+	FSync				: input;	-- SPI frame synchronization
+	SClock				: input;	-- SPI clock
+	SData				: output;	-- SPI data
+	Mode[2..0]			: input;	-- mode select
+	CpuClk		        : output;	-- CPU clock divider output
+)
+
+variable
+
+	GFref				: node;		-- internal reference frequency
+	GFin				: node;		-- internal input frequency
+	FinCnt[INPW-1..0]	: dffe;		-- input frequency counter
+	FrefCnt[REFW-1..0]	: dffe;		-- reference frequency counter
+	Gate				: dff;		-- reclocked GateIn
+	FinGate				: dff;		-- Fin counter gate
+	FrefGate			: dff;		-- Fref counter gate
+	RefEn				: node;		-- FrefGate set enable
+	IntCntEn			: dff;		-- interpolator counter enable
+	IntPlsEn			: dff;		-- interpolator pulse enable
+	CalibEn				: dff;		-- interpolator calibrate enable
+	Calib				: dff;		-- reclocked CalibIn
+	IntCnt[INTW-1..0]	: dffe;		-- interpolator counter
+	CntShift[4..0]		: dff;		-- shift counter
+
+begin
+
+------------------------------- Global signals --------------------------------
+
+	GFref = GLOBAL(Fref);			-- internal reference frequency
+	GFin  = GLOBAL(Fin);			-- internal input frequency
+
+--------------------------------- CPU clock -----------------------------------
+
+	CpuClk = Fref;					-- CPU clock output
+
+-------------------------- Input frequency counter ----------------------------
+
+	FinCnt[].clk = GFin;			-- counter clock
+	FinCnt[].clrn = nReset;			-- counter reset
+	FinCnt[] = FinCnt[]+1;			-- counter implementation
+	QFin = FinCnt[INPW-1];			-- counter output
+
+	FinGate.(clk, clrn) = (GFin, nReset); -- counter gate
+	FinCnt[].ena = FinGate;			-- gate counter
+
+------------------------ Reference frequency counter --------------------------
+
+	FrefCnt[].clk = GFref;			-- counter clock
+	FrefCnt[].clrn = nReset;		-- counter reset
+	FrefCnt[] = FrefCnt[]+1;		-- counter implementation
+	QFref = FrefCnt[REFW-1];		-- counter output
+
+	FrefGate.(clk, clrn) = (GFref, nReset);	--counter gate
+	FrefCnt[].ena = FrefGate;		-- gate counter
+
+---------------------------- Interpolator control -----------------------------
+
+	Calib.(d, clk, clrn) = (CalibIn, GFref, nReset);	-- reclock CalibIn
+	CalibEn.(d, clk, clrn) = (Calib, GFref, nReset);	-- calibrate enable
+	IntPlsEn.(d, clk, clrn) = (FrefGate, GFref, nReset); -- pulse enable
+	PulseOut = (IntPlsEn $ (FinGate # CalibEn));		-- output pulse
+
+	IntCntEn.(clk, clrn) = (GFref, nReset);				-- count enable
+	IntCntEn.d = PulseIn & ((Gate # Calib) $ !FrefGate);
+
+	IntCnt[].(clk, clrn) = (GFref, nReset);
+	if FrefGate then IntCnt[] = IntCnt[] + 1;
+		else IntCnt[] = IntCnt[] - 1; end if;
+	IntCnt[].ena = IntCntEn;
+
+----------------------------- Counters control --------------------------------
+
+	Gate.(d, clk, clrn) = (GateIn, GFref, nReset);	-- reclock GateIn
+	FinGate.d = Gate;						-- Fin counter start on Gate
+	FrefGate.d = RefEn # CalibEn # Calib;	-- Fref counter start on FinGate
+	
+	case Mode[2..0] is
+    	when H"1" =>						-- Hi mode
+            RefEn = FinGate & Fin;
+    	when H"2" =>						-- Lo mode
+            RefEn = FinGate & !Fin;
+    	when others =>						-- F mode
+            RefEn = FinGate;
+	end case;
+
+--------------------------------- SPI port ------------------------------------
+
+	CntShift[].(clk, prn) = (SClock, !FSync);	-- shift counter clock and reset
+	CntShift[] = CntShift[]+1;					-- shift counter implementation
+	if FSync then								-- SData = FinGate or..
+		SData = FinGate;
+			 else								-- SData = counters bits
+		for i in 0 to REFW-1
+			generate
+				if(CntShift[]==i) then SData = FrefCnt[i]; end if;
+			end generate;
+		for i in 0 to INPW-1
+			generate
+				if(CntShift[]==i+8) then SData = FinCnt[i]; end if;
+			end generate;
+		for i in 0 to INTW-1
+			generate
+				if(CntShift[]==i+16) then SData = IntCnt[i]; end if;
+			end generate;
+end if;
+
+-------------------------------------------------------------------------------
+
+end;
+

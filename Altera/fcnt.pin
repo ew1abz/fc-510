@@ -1,0 +1,75 @@
+-- Copyright (C) 1988-2001 Altera Corporation
+-- Any megafunction design, and related net list (encrypted or decrypted),
+-- support information, device programming or simulation file, and any other
+-- associated documentation or information provided by Altera or a partner
+-- under Altera's Megafunction Partnership Program may be used only to
+-- program PLD devices (but not masked PLD devices) from Altera.  Any other
+-- use of such megafunction design, net list, support information, device
+-- programming or simulation file, or any other related documentation or
+-- information is prohibited for any other purpose, including, but not
+-- limited to modification, reverse engineering, de-compiling, or use with
+-- any other silicon devices, unless such use is explicitly licensed under
+-- a separate agreement with Altera or a megafunction partner.  Title to
+-- the intellectual property, including patents, copyrights, trademarks,
+-- trade secrets, or maskworks, embodied in any such megafunction design,
+-- net list, support information, device programming or simulation file, or
+-- any other related documentation or information provided by Altera or a
+-- megafunction partner, remains with Altera, the megafunction partner, or
+-- their respective licensors.  No other licenses, including any licenses
+-- needed under any third party's intellectual property, are provided herein.
+
+
+
+N.C. = No Connect. This pin has no internal connection to the device.
+VCCINT = Dedicated power pin, which MUST be connected to VCC (3.3 volts).
+VCCIO = Dedicated power pin, which MUST be connected to VCC (3.3 volts).
+GND = Dedicated ground pin or unused dedicated input, which MUST be connected to GND.
+RESERVED = Unused I/O pin, which MUST be left unconnected.
+
+----------------------------------------------------------------------------
+
+CHIP "fcnt" ASSIGNED TO AN EPM3064ATC44-10
+TDI                              : 1
+Mode1                            : 2
+Mode0                            : 3
+GND                              : 4
+QFin                             : 5
+CpuClk                           : 6
+TMS                              : 7
+QFref                            : 8
+VCCIO                            : 9
+Mode2                            : 10
+GND                              : 11
+GateIn                           : 12
+CalibIn                          : 13
+nReset                           : 14
+FSync                            : 15
+GND                              : 16
+VCCINT                           : 17
+RESERVED                         : 18
+RESERVED                         : 19
+RESERVED                         : 20
+RESERVED                         : 21
+RESERVED                         : 22
+RESERVED                         : 23
+GND                              : 24
+RESERVED                         : 25
+TCK                              : 26
+PulseOut                         : 27
+RESERVED                         : 28
+VCCIO                            : 29
+GND                              : 30
+RESERVED                         : 31
+TDO                              : 32
+PulseIn                          : 33
+RESERVED                         : 34
+RESERVED                         : 35
+GND                              : 36
+Fin                              : 37
+GND                              : 38
+GND                              : 39
+Fref                             : 40
+VCCINT                           : 41
+RESERVED                         : 42
+SData                            : 43
+SClock                           : 44

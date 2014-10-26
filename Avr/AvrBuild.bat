@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\labels.tmp" -fI -W+ie -C V0E -o "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.hex" -d "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.obj" -e "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.eep" -m "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.map" -l "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.lst" "d:\Projects\Proj_Spetspribor\Measuring\FC-510\Avr\Prescaler.asm"

@@ -1,0 +1,875 @@
+Project Informationd:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+
+MAX+plus II Compiler Report File
+Version 10.1 06/12/2001
+Compiled: 04/13/2012 09:17:19
+
+Copyright (C) 1988-2001 Altera Corporation
+Any megafunction design, and related net list (encrypted or decrypted),
+support information, device programming or simulation file, and any other
+associated documentation or information provided by Altera or a partner
+under Altera's Megafunction Partnership Program may be used only to
+program PLD devices (but not masked PLD devices) from Altera.  Any other
+use of such megafunction design, net list, support information, device
+programming or simulation file, or any other related documentation or
+information is prohibited for any other purpose, including, but not
+limited to modification, reverse engineering, de-compiling, or use with
+any other silicon devices, unless such use is explicitly licensed under
+a separate agreement with Altera or a megafunction partner.  Title to
+the intellectual property, including patents, copyrights, trademarks,
+trade secrets, or maskworks, embodied in any such megafunction design,
+net list, support information, device programming or simulation file, or
+any other related documentation or information provided by Altera or a
+megafunction partner, remains with Altera, the megafunction partner, or
+their respective licensors.  No other licenses, including any licenses
+needed under any third party's intellectual property, are provided herein.
+
+
+
+***** Project compilation was successful
+
+
+Untitled
+
+
+** DEVICE SUMMARY **
+
+Chip/                     Input   Output   Bidir         Shareable
+POF       Device          Pins    Pins     Pins     LCs  Expanders  % Utilized
+
+fcnt      EPM3064ATC44-10  11       5        0      41      15          64 %
+
+User Pins:                 11       5        0  
+
+
+
+Project Informationd:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+
+** PIN/LOCATION/CHIP ASSIGNMENTS **
+
+                  Actual                  
+    User       Assignments                
+Assignments   (if different)     Node Name
+
+fcnt@13                           CalibIn
+fcnt@6                            CpuClk
+fcnt@37                           Fin
+fcnt@40                           Fref
+fcnt@15                           FSync
+fcnt@12                           GateIn
+fcnt@3                            Mode0
+fcnt@2                            Mode1
+fcnt@10                           Mode2
+fcnt@14                           nReset
+fcnt@33                           PulseIn
+fcnt@27                           PulseOut
+fcnt@5                            QFin
+fcnt@8                            QFref
+fcnt@44                           SClock
+fcnt@43                           SData
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+***** Logic for device 'fcnt' compiled without errors.
+
+
+
+
+Device: EPM3064ATC44-10
+
+Device Options:
+    Turbo Bit                                    = ON
+    Security Bit                                 = ON
+    Enable JTAG Support                        = ON
+    User Code                                  = ffffffff
+    MultiVolt I/O                              = OFF
+
+                    R                    R  R  
+                    E                    E  E  
+              S     S  V                 S  S  
+              C  S  E  C                 E  E  
+              l  D  R  C  F              R  R  
+              o  a  V  I  r  G  G  F  G  V  V  
+              c  t  E  N  e  N  N  i  N  E  E  
+              k  a  D  T  f  D  D  n  D  D  D  
+            -----------------------------------_ 
+          /  44 43 42 41 40 39 38 37 36 35 34   | 
+    #TDI |  1                                33 | PulseIn 
+   Mode1 |  2                                32 | #TDO 
+   Mode0 |  3                                31 | RESERVED 
+     GND |  4                                30 | GND 
+    QFin |  5                                29 | VCCIO 
+  CpuClk |  6        EPM3064ATC44-10         28 | RESERVED 
+    #TMS |  7                                27 | PulseOut 
+   QFref |  8                                26 | #TCK 
+   VCCIO |  9                                25 | RESERVED 
+   Mode2 | 10                                24 | GND 
+     GND | 11                                23 | RESERVED 
+         |_  12 13 14 15 16 17 18 19 20 21 22  _| 
+           ------------------------------------ 
+              G  C  n  F  G  V  R  R  R  R  R  
+              a  a  R  S  N  C  E  E  E  E  E  
+              t  l  e  y  D  C  S  S  S  S  S  
+              e  i  s  n     I  E  E  E  E  E  
+              I  b  e  c     N  R  R  R  R  R  
+              n  I  t        T  V  V  V  V  V  
+                 n              E  E  E  E  E  
+                                D  D  D  D  D  
+
+
+N.C. = No Connect. This pin has no internal connection to the device.
+VCCINT = Dedicated power pin, which MUST be connected to VCC (3.3 volts).
+VCCIO = Dedicated power pin, which MUST be connected to VCC (3.3 volts).
+GND = Dedicated ground pin or unused dedicated input, which MUST be connected to GND.
+RESERVED = Unused I/O pin, which MUST be left unconnected.
+
+^ = Dedicated configuration pin.
++ = Reserved configuration pin, which is tri-stated during user mode.
+* = Reserved configuration pin, which drives out in user mode.
+PDn = Power Down pin. 
+@ = Special-purpose pin. 
+# = JTAG Boundary-Scan Testing/In-System Programming or Configuration Pin. The JTAG inputs TMS and TDI should be tied to VCC and TCK should be tied to GND when not in use.
+& = JTAG pin used for I/O. When used as user I/O, JTAG pins must be kept stable before and during configuration.  JTAG pin stability prevents accidental loading of JTAG instructions.
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** RESOURCE USAGE **
+
+                                                Shareable     External
+Logic Array Block     Logic Cells   I/O Pins    Expanders   Interconnect
+
+A:     LC1 - LC16    15/16( 93%)   7/ 8( 87%)  15/16( 93%)  31/36( 86%) 
+B:    LC17 - LC32    16/16(100%)   7/ 7(100%)   2/16( 12%)  25/36( 69%) 
+C:    LC33 - LC48     1/16(  6%)   1/ 8( 12%)   1/16(  6%)  11/36( 30%) 
+D:    LC49 - LC64     9/16( 56%)   3/ 7( 42%)   0/16(  0%)  15/36( 41%) 
+
+
+Total dedicated input pins used:                 2/4      ( 50%)
+Total I/O pins used:                            18/30     ( 60%)
+Total logic cells used:                         41/64     ( 64%)
+Total shareable expanders used:                 15/64     ( 23%)
+Total Turbo logic cells used:                   41/64     ( 64%)
+Total shareable expanders not available (n/a):   3/64     (  4%)
+Average fan-in:                                  7.09
+Total fan-in:                                   291
+
+Total input pins required:                      11
+Total output pins required:                      5
+Total bidirectional pins required:               0
+Total reserved pins required                     4
+Total logic cells required:                     41
+Total flipflops required:                       36
+Total product terms required:                  142
+Total logic cells lending parallel expanders:    0
+Total shareable expanders in database:          15
+
+Synthesized logic cells:                         2/  64   (  3%)
+
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** INPUTS **
+
+                                         Shareable
+                                         Expanders     Fan-In    Fan-Out
+ Pin     LC  LAB  Primitive    Code   Total Shared n/a INP  FBK  OUT  FBK  Name
+  13   (20)  (B)      INPUT               0      0   0    0    0    0    1  CalibIn
+  37      -   -       INPUT  G            0      0   0    0    0    0    1  Fin
+  40      -   -       INPUT  G            0      0   0    0    0    1    0  Fref
+  15   (17)  (B)      INPUT               0      0   0    0    0    1    7  FSync
+  12   (21)  (B)      INPUT               0      0   0    0    0    0    1  GateIn
+   3    (4)  (A)      INPUT               0      0   0    0    0    0    1  Mode0
+   2    (5)  (A)      INPUT               0      0   0    0    0    0    1  Mode1
+  10   (25)  (B)      INPUT               0      0   0    0    0    0    1  Mode2
+  14   (19)  (B)      INPUT               0      0   0    0    0    2   29  nReset
+  33   (57)  (D)      INPUT               0      0   0    0    0    0    1  PulseIn
+  44   (11)  (A)      INPUT               0      0   0    0    0    0    5  SClock
+
+
+Code:
+
+s = Synthesized pin or logic cell
+t = Turbo logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+G = Global Source. Fan-out destinations counted here do not include destinations
+that are driven using global routing resources. Refer to the Auto Global Signals,
+Clock Signals, Clear Signals, Synchronous Load Signals, and Synchronous Clear Signals
+Sections of this Report File for information on which signals' fan-outs are used as
+Clock, Clear, Preset, Output Enable, and synchronous Load signals.
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** OUTPUTS **
+
+                                         Shareable
+                                         Expanders     Fan-In    Fan-Out
+ Pin     LC  LAB  Primitive    Code   Total Shared n/a INP  FBK  OUT  FBK  Name
+   6      1    A     OUTPUT      t        0      0   0    1    0    0    0  CpuClk
+  27     49    D     OUTPUT      t        0      0   0    0    3    0    0  PulseOut
+   5      3    A         FF   +  t        0      0   0    1    8    0    1  QFin
+   8     30    B         FF   +  t        0      0   0    1    8    0    1  QFref
+  43     14    A     OUTPUT      t       15      0   0    1   22    0    0  SData
+
+
+Code:
+
+s = Synthesized pin or logic cell
+t = Turbo logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** BURIED LOGIC **
+
+                                         Shareable
+                                         Expanders     Fan-In    Fan-Out
+ Pin     LC  LAB  Primitive    Code   Total Shared n/a INP  FBK  OUT  FBK  Name
+   -     58    D       DFFE   +  t        0      0   0    2    0    0    3  Calib
+   -     54    D       DFFE   +  t        0      0   0    1    1    1    1  CalibEn
+   -     18    B       TFFE      t        0      0   0    2    0    1    6  CntShift0
+ (14)    19    B       TFFE      t        0      0   0    2    1    1    5  CntShift1
+ (13)    20    B       TFFE      t        0      0   0    2    2    1    4  CntShift2
+  (1)     8    A       TFFE      t        0      0   0    2    3    1    3  CntShift3
+  (2)     5    A       TFFE      t        0      0   0    2    4    1    2  CntShift4
+   -     50    D       TFFE   +  t        0      0   0    1    1    2    6  FinCnt0
+ (32)    56    D       TFFE   +  t        0      0   0    1    2    2    5  FinCnt1
+   -     13    A       TFFE   +  t        0      0   0    1    3    2    4  FinCnt2
+   -      6    A       TFFE   +  t        0      0   0    1    4    1    4  FinCnt3
+   -     15    A       TFFE   +  t        0      0   0    1    5    2    2  FinCnt4
+  (3)     4    A       TFFE   +  t        0      0   0    1    6    1    2  FinCnt5
+   -      2    A       TFFE   +  t        0      0   0    1    7    1    1  FinCnt6
+ (33)    57    D       DFFE   +  t        0      0   0    1    1    3    8  FinGate
+   -     29    B       TFFE   +  t        0      0   0    1    1    2    6  FrefCnt0
+ (15)    17    B       TFFE   +  t        0      0   0    1    2    2    5  FrefCnt1
+   -     12    A       TFFE   +  t        0      0   0    1    3    2    4  FrefCnt2
+ (44)    11    A       TFFE   +  t        0      0   0    1    4    1    4  FrefCnt3
+   -     10    A       TFFE   +  t        0      0   0    1    5    2    2  FrefCnt4
+   -      7    A       TFFE   +  t        0      0   0    1    6    2    1  FrefCnt5
+   -      9    A       TFFE   +  t        0      0   0    1    7    2    0  FrefCnt6
+   -     52    D       DFFE   +  t        0      0   0    5    3    1   16  FrefGate
+ (31)    53    D       DFFE   +  t        0      0   0    2    0    0    2  Gate
+   -     55    D       DFFE   +  t        0      0   0    2    3    0    8  IntCntEn
+   -     28    B       TFFE   +  t        0      0   0    1    1    1    7  IntCnt0
+   -     22    B       DFFE   +  t        1      0   1    1    4    1    7  IntCnt1
+   -     26    B       TFFE   +  t        0      0   0    1    4    1    5  IntCnt2
+   -     24    B       TFFE   +  t        0      0   0    1    5    0    5  IntCnt3
+ (10)    25    B       TFFE   +  t        0      0   0    1    6    1    3  IntCnt4
+  (7)    32    B       TFFE   +  t        0      0   0    1    7    0    3  IntCnt5
+   -     27    B       TFFE   +  t        0      0   0    1    8    0    2  IntCnt6
+   -     23    B       TFFE   +  t        0      0   0    1    9    0    1  IntCnt7
+   -     31    B       DFFE   +  t        0      0   0    1    1    1    0  IntPlsEn
+ (23)    41    C       SOFT    s t        1      0   1    1   10    1    0  ~612~1
+ (12)    21    B       SOFT    s t        1      0   1    1   10    1    0  ~612~2
+
+
+Code:
+
+s = Synthesized pin or logic cell
+t = Turbo logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** LOGIC CELL INTERCONNECTIONS **
+
+Logic Array Block 'A':
+
+                                       Logic cells placed in LAB 'A'
+        +----------------------------- LC8 CntShift3
+        | +--------------------------- LC5 CntShift4
+        | | +------------------------- LC1 CpuClk
+        | | | +----------------------- LC13 FinCnt2
+        | | | | +--------------------- LC6 FinCnt3
+        | | | | | +------------------- LC15 FinCnt4
+        | | | | | | +----------------- LC4 FinCnt5
+        | | | | | | | +--------------- LC2 FinCnt6
+        | | | | | | | | +------------- LC12 FrefCnt2
+        | | | | | | | | | +----------- LC11 FrefCnt3
+        | | | | | | | | | | +--------- LC10 FrefCnt4
+        | | | | | | | | | | | +------- LC7 FrefCnt5
+        | | | | | | | | | | | | +----- LC9 FrefCnt6
+        | | | | | | | | | | | | | +--- LC3 QFin
+        | | | | | | | | | | | | | | +- LC14 SData
+        | | | | | | | | | | | | | | | 
+        | | | | | | | | | | | | | | |   Other LABs fed by signals
+        | | | | | | | | | | | | | | |   that feed LAB 'A'
+LC      | | | | | | | | | | | | | | | | A B C D |     Logic cells that feed LAB 'A':
+LC8  -> * * - - - - - - - - - - - - * | * * * - | <-- CntShift3
+LC5  -> - * - - - - - - - - - - - - * | * * * - | <-- CntShift4
+LC13 -> - - - * * * * * - - - - - * * | * - - - | <-- FinCnt2
+LC6  -> - - - - * * * * - - - - - * - | * - * - | <-- FinCnt3
+LC15 -> - - - - - * * * - - - - - * * | * - - - | <-- FinCnt4
+LC4  -> - - - - - - * * - - - - - * - | * - * - | <-- FinCnt5
+LC2  -> - - - - - - - * - - - - - * - | * * - - | <-- FinCnt6
+LC12 -> - - - - - - - - * * * * * - * | * * - - | <-- FrefCnt2
+LC11 -> - - - - - - - - - * * * * - - | * * - - | <-- FrefCnt3
+LC10 -> - - - - - - - - - - * * * - * | * * - - | <-- FrefCnt4
+LC7  -> - - - - - - - - - - - * * - * | * * - - | <-- FrefCnt5
+LC9  -> - - - - - - - - - - - - * - * | * * - - | <-- FrefCnt6
+
+Pin
+37   -> - - - - - - - - - - - - - - - | - - - * | <-- Fin
+40   -> - - * - - - - - - - - - - - - | * - - - | <-- Fref
+15   -> * * - - - - - - - - - - - - * | * * * - | <-- FSync
+14   -> - - - * * * * * * * * * * * - | * * - * | <-- nReset
+44   -> * * - - - - - - - - - - - - - | * * - - | <-- SClock
+LC18 -> * * - - - - - - - - - - - - * | * * * - | <-- CntShift0
+LC19 -> * * - - - - - - - - - - - - * | * * * - | <-- CntShift1
+LC20 -> * * - - - - - - - - - - - - * | * * * - | <-- CntShift2
+LC50 -> - - - * * * * * - - - - - * * | * - - * | <-- FinCnt0
+LC56 -> - - - * * * * * - - - - - * * | * - - - | <-- FinCnt1
+LC57 -> - - - * * * * * - - - - - * * | * - - * | <-- FinGate
+LC29 -> - - - - - - - - * * * * * - * | * * - - | <-- FrefCnt0
+LC17 -> - - - - - - - - * * * * * - * | * * - - | <-- FrefCnt1
+LC52 -> - - - - - - - - * * * * * - - | * * - * | <-- FrefGate
+LC28 -> - - - - - - - - - - - - - - * | * * - - | <-- IntCnt0
+LC22 -> - - - - - - - - - - - - - - * | * * - - | <-- IntCnt1
+LC26 -> - - - - - - - - - - - - - - * | * * - - | <-- IntCnt2
+LC25 -> - - - - - - - - - - - - - - * | * * - - | <-- IntCnt4
+LC41 -> - - - - - - - - - - - - - - * | * - - - | <-- ~612~1
+LC21 -> - - - - - - - - - - - - - - * | * - - - | <-- ~612~2
+
+
+* = The logic cell or pin is an input to the logic cell (or LAB) through the PIA.
+- = The logic cell or pin is not an input to the logic cell (or LAB).
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** LOGIC CELL INTERCONNECTIONS **
+
+Logic Array Block 'B':
+
+                                         Logic cells placed in LAB 'B'
+        +------------------------------- LC18 CntShift0
+        | +----------------------------- LC19 CntShift1
+        | | +--------------------------- LC20 CntShift2
+        | | | +------------------------- LC29 FrefCnt0
+        | | | | +----------------------- LC17 FrefCnt1
+        | | | | | +--------------------- LC28 IntCnt0
+        | | | | | | +------------------- LC22 IntCnt1
+        | | | | | | | +----------------- LC26 IntCnt2
+        | | | | | | | | +--------------- LC24 IntCnt3
+        | | | | | | | | | +------------- LC25 IntCnt4
+        | | | | | | | | | | +----------- LC32 IntCnt5
+        | | | | | | | | | | | +--------- LC27 IntCnt6
+        | | | | | | | | | | | | +------- LC23 IntCnt7
+        | | | | | | | | | | | | | +----- LC31 IntPlsEn
+        | | | | | | | | | | | | | | +--- LC30 QFref
+        | | | | | | | | | | | | | | | +- LC21 ~612~2
+        | | | | | | | | | | | | | | | | 
+        | | | | | | | | | | | | | | | |   Other LABs fed by signals
+        | | | | | | | | | | | | | | | |   that feed LAB 'B'
+LC      | | | | | | | | | | | | | | | | | A B C D |     Logic cells that feed LAB 'B':
+LC18 -> * * * - - - - - - - - - - - - * | * * * - | <-- CntShift0
+LC19 -> - * * - - - - - - - - - - - - * | * * * - | <-- CntShift1
+LC20 -> - - * - - - - - - - - - - - - * | * * * - | <-- CntShift2
+LC29 -> - - - * * - - - - - - - - - * - | * * - - | <-- FrefCnt0
+LC17 -> - - - - * - - - - - - - - - * - | * * - - | <-- FrefCnt1
+LC28 -> - - - - - * * * * * * * * - - - | * * - - | <-- IntCnt0
+LC22 -> - - - - - - * * * * * * * - - - | * * - - | <-- IntCnt1
+LC26 -> - - - - - - - * * * * * * - - - | * * - - | <-- IntCnt2
+LC24 -> - - - - - - - - * * * * * - - * | - * - - | <-- IntCnt3
+LC25 -> - - - - - - - - - * * * * - - - | * * - - | <-- IntCnt4
+LC32 -> - - - - - - - - - - * * * - - * | - * - - | <-- IntCnt5
+LC27 -> - - - - - - - - - - - * * - - * | - * - - | <-- IntCnt6
+
+Pin
+37   -> - - - - - - - - - - - - - - - - | - - - * | <-- Fin
+40   -> - - - - - - - - - - - - - - - - | * - - - | <-- Fref
+15   -> * * * - - - - - - - - - - - - * | * * * - | <-- FSync
+14   -> - - - * * * * * * * * * * * * - | * * - * | <-- nReset
+44   -> * * * - - - - - - - - - - - - - | * * - - | <-- SClock
+LC8  -> - - - - - - - - - - - - - - - * | * * * - | <-- CntShift3
+LC5  -> - - - - - - - - - - - - - - - * | * * * - | <-- CntShift4
+LC2  -> - - - - - - - - - - - - - - - * | * * - - | <-- FinCnt6
+LC12 -> - - - - - - - - - - - - - - * - | * * - - | <-- FrefCnt2
+LC11 -> - - - - - - - - - - - - - - * * | * * - - | <-- FrefCnt3
+LC10 -> - - - - - - - - - - - - - - * - | * * - - | <-- FrefCnt4
+LC7  -> - - - - - - - - - - - - - - * - | * * - - | <-- FrefCnt5
+LC9  -> - - - - - - - - - - - - - - * - | * * - - | <-- FrefCnt6
+LC52 -> - - - * * - * * * * * * * * * - | * * - * | <-- FrefGate
+LC55 -> - - - - - * * * * * * * * - - - | - * - - | <-- IntCntEn
+
+
+* = The logic cell or pin is an input to the logic cell (or LAB) through the PIA.
+- = The logic cell or pin is not an input to the logic cell (or LAB).
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** LOGIC CELL INTERCONNECTIONS **
+
+Logic Array Block 'C':
+
+           Logic cells placed in LAB 'C'
+        +- LC41 ~612~1
+        | 
+        |   Other LABs fed by signals
+        |   that feed LAB 'C'
+LC      | | A B C D |     Logic cells that feed LAB 'C':
+
+Pin
+37   -> - | - - - * | <-- Fin
+40   -> - | * - - - | <-- Fref
+15   -> * | * * * - | <-- FSync
+LC18 -> * | * * * - | <-- CntShift0
+LC19 -> * | * * * - | <-- CntShift1
+LC20 -> * | * * * - | <-- CntShift2
+LC8  -> * | * * * - | <-- CntShift3
+LC5  -> * | * * * - | <-- CntShift4
+LC6  -> * | * - * - | <-- FinCnt3
+LC4  -> * | * - * - | <-- FinCnt5
+LC23 -> * | - - * - | <-- IntCnt7
+LC3  -> * | - - * - | <-- QFin
+LC30 -> * | - - * - | <-- QFref
+
+
+* = The logic cell or pin is an input to the logic cell (or LAB) through the PIA.
+- = The logic cell or pin is not an input to the logic cell (or LAB).
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** LOGIC CELL INTERCONNECTIONS **
+
+Logic Array Block 'D':
+
+                           Logic cells placed in LAB 'D'
+        +----------------- LC58 Calib
+        | +--------------- LC54 CalibEn
+        | | +------------- LC50 FinCnt0
+        | | | +----------- LC56 FinCnt1
+        | | | | +--------- LC57 FinGate
+        | | | | | +------- LC52 FrefGate
+        | | | | | | +----- LC53 Gate
+        | | | | | | | +--- LC55 IntCntEn
+        | | | | | | | | +- LC49 PulseOut
+        | | | | | | | | | 
+        | | | | | | | | |   Other LABs fed by signals
+        | | | | | | | | |   that feed LAB 'D'
+LC      | | | | | | | | | | A B C D |     Logic cells that feed LAB 'D':
+LC58 -> - * - - - * - * - | - - - * | <-- Calib
+LC54 -> - - - - - * - - * | - - - * | <-- CalibEn
+LC50 -> - - * * - - - - - | * - - * | <-- FinCnt0
+LC57 -> - - * * - * - - * | * - - * | <-- FinGate
+LC52 -> - - - - - - - * - | * * - * | <-- FrefGate
+LC53 -> - - - - * - - * - | - - - * | <-- Gate
+
+Pin
+13   -> * - - - - - - - - | - - - * | <-- CalibIn
+37   -> - - - - - * - - - | - - - * | <-- Fin
+40   -> - - - - - - - - - | * - - - | <-- Fref
+12   -> - - - - - - * - - | - - - * | <-- GateIn
+3    -> - - - - - * - - - | - - - * | <-- Mode0
+2    -> - - - - - * - - - | - - - * | <-- Mode1
+10   -> - - - - - * - - - | - - - * | <-- Mode2
+14   -> * * * * * * * * - | * * - * | <-- nReset
+33   -> - - - - - - - * - | - - - * | <-- PulseIn
+LC31 -> - - - - - - - - * | - - - * | <-- IntPlsEn
+
+
+* = The logic cell or pin is an input to the logic cell (or LAB) through the PIA.
+- = The logic cell or pin is not an input to the logic cell (or LAB).
+
+
+Device-Specific Information:d:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+fcnt
+
+** EQUATIONS **
+
+CalibIn  : INPUT;
+Fin      : INPUT;
+Fref     : INPUT;
+FSync    : INPUT;
+GateIn   : INPUT;
+Mode0    : INPUT;
+Mode1    : INPUT;
+Mode2    : INPUT;
+nReset   : INPUT;
+PulseIn  : INPUT;
+SClock   : INPUT;
+
+-- Node name is 'Calib' from file "fcnt.tdf" line 36, column 2
+-- Equation name is 'Calib', location is LC058, type is buried.
+Calib    = DFFE( CalibIn $  GND, GLOBAL( Fref),  nReset,  VCC,  VCC);
+
+-- Node name is 'CalibEn' from file "fcnt.tdf" line 35, column 2
+-- Equation name is 'CalibEn', location is LC054, type is buried.
+CalibEn  = DFFE( Calib $  GND, GLOBAL( Fref),  nReset,  VCC,  VCC);
+
+-- Node name is 'CntShift0' from file "fcnt.tdf" line 38, column 10
+-- Equation name is 'CntShift0', location is LC018, type is buried.
+CntShift0 = TFFE( VCC,  SClock,  VCC, !FSync,  VCC);
+
+-- Node name is 'CntShift1' from file "fcnt.tdf" line 38, column 10
+-- Equation name is 'CntShift1', location is LC019, type is buried.
+CntShift1 = TFFE( CntShift0,  SClock,  VCC, !FSync,  VCC);
+
+-- Node name is 'CntShift2' from file "fcnt.tdf" line 38, column 10
+-- Equation name is 'CntShift2', location is LC020, type is buried.
+CntShift2 = TFFE( _EQ001,  SClock,  VCC, !FSync,  VCC);
+  _EQ001 =  CntShift0 &  CntShift1;
+
+-- Node name is 'CntShift3' from file "fcnt.tdf" line 38, column 10
+-- Equation name is 'CntShift3', location is LC008, type is buried.
+CntShift3 = TFFE( _EQ002,  SClock,  VCC, !FSync,  VCC);
+  _EQ002 =  CntShift0 &  CntShift1 &  CntShift2;
+
+-- Node name is 'CntShift4' from file "fcnt.tdf" line 38, column 10
+-- Equation name is 'CntShift4', location is LC005, type is buried.
+CntShift4 = TFFE( _EQ003,  SClock,  VCC, !FSync,  VCC);
+  _EQ003 =  CntShift0 &  CntShift1 &  CntShift2 &  CntShift3;
+
+-- Node name is 'CpuClk' 
+-- Equation name is 'CpuClk', location is LC001, type is output.
+ CpuClk  = LCELL( Fref $  GND);
+
+-- Node name is 'FinCnt0' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt0', location is LC050, type is buried.
+FinCnt0  = TFFE( VCC, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+
+-- Node name is 'FinCnt1' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt1', location is LC056, type is buried.
+FinCnt1  = TFFE( FinCnt0, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+
+-- Node name is 'FinCnt2' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt2', location is LC013, type is buried.
+FinCnt2  = TFFE( _EQ004, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+  _EQ004 =  FinCnt0 &  FinCnt1;
+
+-- Node name is 'FinCnt3' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt3', location is LC006, type is buried.
+FinCnt3  = TFFE( _EQ005, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+  _EQ005 =  FinCnt0 &  FinCnt1 &  FinCnt2;
+
+-- Node name is 'FinCnt4' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt4', location is LC015, type is buried.
+FinCnt4  = TFFE( _EQ006, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+  _EQ006 =  FinCnt0 &  FinCnt1 &  FinCnt2 &  FinCnt3;
+
+-- Node name is 'FinCnt5' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt5', location is LC004, type is buried.
+FinCnt5  = TFFE( _EQ007, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+  _EQ007 =  FinCnt0 &  FinCnt1 &  FinCnt2 &  FinCnt3 &  FinCnt4;
+
+-- Node name is 'FinCnt6' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'FinCnt6', location is LC002, type is buried.
+FinCnt6  = TFFE( _EQ008, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+  _EQ008 =  FinCnt0 &  FinCnt1 &  FinCnt2 &  FinCnt3 &  FinCnt4 &  FinCnt5;
+
+-- Node name is 'FinGate' from file "fcnt.tdf" line 30, column 2
+-- Equation name is 'FinGate', location is LC057, type is buried.
+FinGate  = DFFE( Gate $  GND, GLOBAL( Fin),  nReset,  VCC,  VCC);
+
+-- Node name is 'FrefCnt0' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt0', location is LC029, type is buried.
+FrefCnt0 = TFFE( VCC, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+
+-- Node name is 'FrefCnt1' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt1', location is LC017, type is buried.
+FrefCnt1 = TFFE( FrefCnt0, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+
+-- Node name is 'FrefCnt2' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt2', location is LC012, type is buried.
+FrefCnt2 = TFFE( _EQ009, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+  _EQ009 =  FrefCnt0 &  FrefCnt1;
+
+-- Node name is 'FrefCnt3' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt3', location is LC011, type is buried.
+FrefCnt3 = TFFE( _EQ010, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+  _EQ010 =  FrefCnt0 &  FrefCnt1 &  FrefCnt2;
+
+-- Node name is 'FrefCnt4' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt4', location is LC010, type is buried.
+FrefCnt4 = TFFE( _EQ011, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+  _EQ011 =  FrefCnt0 &  FrefCnt1 &  FrefCnt2 &  FrefCnt3;
+
+-- Node name is 'FrefCnt5' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt5', location is LC007, type is buried.
+FrefCnt5 = TFFE( _EQ012, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+  _EQ012 =  FrefCnt0 &  FrefCnt1 &  FrefCnt2 &  FrefCnt3 &  FrefCnt4;
+
+-- Node name is 'FrefCnt6' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'FrefCnt6', location is LC009, type is buried.
+FrefCnt6 = TFFE( _EQ013, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+  _EQ013 =  FrefCnt0 &  FrefCnt1 &  FrefCnt2 &  FrefCnt3 &  FrefCnt4 & 
+              FrefCnt5;
+
+-- Node name is 'FrefGate' from file "fcnt.tdf" line 31, column 2
+-- Equation name is 'FrefGate', location is LC052, type is buried.
+FrefGate = DFFE( _EQ014 $  VCC, GLOBAL( Fref),  nReset,  VCC,  VCC);
+  _EQ014 = !Calib & !CalibEn &  Fin & !Mode0 &  Mode1 & !Mode2
+         # !Calib & !CalibEn & !Fin &  Mode0 & !Mode1 & !Mode2
+         # !Calib & !CalibEn & !FinGate;
+
+-- Node name is 'Gate' from file "fcnt.tdf" line 29, column 2
+-- Equation name is 'Gate', location is LC053, type is buried.
+Gate     = DFFE( GateIn $  GND, GLOBAL( Fref),  nReset,  VCC,  VCC);
+
+-- Node name is 'IntCntEn' from file "fcnt.tdf" line 33, column 2
+-- Equation name is 'IntCntEn', location is LC055, type is buried.
+IntCntEn = DFFE( _EQ015 $  GND, GLOBAL( Fref),  nReset,  VCC,  VCC);
+  _EQ015 = !Calib & !FrefGate & !Gate &  PulseIn
+         #  Calib &  FrefGate &  PulseIn
+         #  FrefGate &  Gate &  PulseIn;
+
+-- Node name is 'IntCnt0' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt0', location is LC028, type is buried.
+IntCnt0  = TFFE( VCC, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+
+-- Node name is 'IntCnt1' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt1', location is LC022, type is buried.
+IntCnt1  = DFFE( _EQ016 $  FrefGate, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ016 =  IntCnt0 &  IntCnt1
+         # !IntCnt0 & !IntCnt1;
+
+-- Node name is 'IntCnt2' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt2', location is LC026, type is buried.
+IntCnt2  = TFFE( _EQ017, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ017 =  FrefGate &  IntCnt0 &  IntCnt1
+         # !FrefGate & !IntCnt0 & !IntCnt1;
+
+-- Node name is 'IntCnt3' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt3', location is LC024, type is buried.
+IntCnt3  = TFFE( _EQ018, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ018 =  FrefGate &  IntCnt0 &  IntCnt1 &  IntCnt2
+         # !FrefGate & !IntCnt0 & !IntCnt1 & !IntCnt2;
+
+-- Node name is 'IntCnt4' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt4', location is LC025, type is buried.
+IntCnt4  = TFFE( _EQ019, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ019 =  FrefGate &  IntCnt0 &  IntCnt1 &  IntCnt2 &  IntCnt3
+         # !FrefGate & !IntCnt0 & !IntCnt1 & !IntCnt2 & !IntCnt3;
+
+-- Node name is 'IntCnt5' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt5', location is LC032, type is buried.
+IntCnt5  = TFFE( _EQ020, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ020 =  FrefGate &  IntCnt0 &  IntCnt1 &  IntCnt2 &  IntCnt3 &  IntCnt4
+         # !FrefGate & !IntCnt0 & !IntCnt1 & !IntCnt2 & !IntCnt3 & !IntCnt4;
+
+-- Node name is 'IntCnt6' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt6', location is LC027, type is buried.
+IntCnt6  = TFFE( _EQ021, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ021 =  FrefGate &  IntCnt0 &  IntCnt1 &  IntCnt2 &  IntCnt3 &  IntCnt4 & 
+              IntCnt5
+         # !FrefGate & !IntCnt0 & !IntCnt1 & !IntCnt2 & !IntCnt3 & !IntCnt4 & 
+             !IntCnt5;
+
+-- Node name is 'IntCnt7' from file "fcnt.tdf" line 37, column 8
+-- Equation name is 'IntCnt7', location is LC023, type is buried.
+IntCnt7  = TFFE( _EQ022, GLOBAL( Fref),  nReset,  VCC,  IntCntEn);
+  _EQ022 =  FrefGate &  IntCnt0 &  IntCnt1 &  IntCnt2 &  IntCnt3 &  IntCnt4 & 
+              IntCnt5 &  IntCnt6
+         # !FrefGate & !IntCnt0 & !IntCnt1 & !IntCnt2 & !IntCnt3 & !IntCnt4 & 
+             !IntCnt5 & !IntCnt6;
+
+-- Node name is 'IntPlsEn' from file "fcnt.tdf" line 34, column 2
+-- Equation name is 'IntPlsEn', location is LC031, type is buried.
+IntPlsEn = DFFE( FrefGate $  GND, GLOBAL( Fref),  nReset,  VCC,  VCC);
+
+-- Node name is 'PulseOut' 
+-- Equation name is 'PulseOut', location is LC049, type is output.
+ PulseOut = LCELL(!IntPlsEn $  _EQ023);
+  _EQ023 = !CalibEn & !FinGate;
+
+-- Node name is 'QFin' = 'FinCnt7' from file "fcnt.tdf" line 27, column 8
+-- Equation name is 'QFin', location is LC003, type is output.
+ QFin    = TFFE( _EQ024, GLOBAL( Fin),  nReset,  VCC,  FinGate);
+  _EQ024 =  FinCnt0 &  FinCnt1 &  FinCnt2 &  FinCnt3 &  FinCnt4 &  FinCnt5 & 
+              FinCnt6;
+
+-- Node name is 'QFref' = 'FrefCnt7' from file "fcnt.tdf" line 28, column 9
+-- Equation name is 'QFref', location is LC030, type is output.
+ QFref   = TFFE( _EQ025, GLOBAL( Fref),  nReset,  VCC,  FrefGate);
+  _EQ025 =  FrefCnt0 &  FrefCnt1 &  FrefCnt2 &  FrefCnt3 &  FrefCnt4 & 
+              FrefCnt5 &  FrefCnt6;
+
+-- Node name is 'SData' 
+-- Equation name is 'SData', location is LC014, type is output.
+ SData   = LCELL( _EQ026 $  VCC);
+  _EQ026 = !_LC021 & !_LC041 &  _X001 &  _X002 &  _X003 &  _X004 &  _X005 & 
+              _X006 &  _X007 &  _X008 &  _X009 &  _X010 &  _X011 &  _X012 & 
+              _X013 &  _X014 &  _X015;
+  _X001  = EXP( FinGate &  FSync);
+  _X002  = EXP(!CntShift0 &  CntShift1 & !CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt2);
+  _X003  = EXP( CntShift0 & !CntShift1 &  CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt5 & !FSync);
+  _X004  = EXP(!CntShift0 & !CntShift1 & !CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt0 & !FSync);
+  _X005  = EXP(!CntShift0 & !CntShift1 & !CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt0);
+  _X006  = EXP(!CntShift0 & !CntShift1 & !CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt0 & !FSync);
+  _X007  = EXP(!CntShift0 & !CntShift1 &  CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt4 & !FSync);
+  _X008  = EXP(!CntShift0 &  CntShift1 & !CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt2 & !FSync);
+  _X009  = EXP( CntShift0 & !CntShift1 & !CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt1 & !FSync);
+  _X010  = EXP(!CntShift0 & !CntShift1 &  CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt4);
+  _X011  = EXP(!CntShift0 &  CntShift1 &  CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt6 & !FSync);
+  _X012  = EXP( CntShift0 & !CntShift1 & !CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt1);
+  _X013  = EXP(!CntShift0 & !CntShift1 &  CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt4 & !FSync);
+  _X014  = EXP(!CntShift0 &  CntShift1 & !CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt2 & !FSync);
+  _X015  = EXP( CntShift0 & !CntShift1 & !CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt1 & !FSync);
+
+-- Node name is '~612~1' from file "fcnt.tdf" line 118, column 37
+-- Equation name is '~612~1', location is LC041, type is buried.
+-- synthesized logic cell 
+_LC041   = LCELL( _EQ027 $  GND);
+  _EQ027 =  CntShift0 &  CntShift1 &  CntShift2 &  CntShift3 & !CntShift4 & 
+             !FSync &  QFin
+         #  CntShift0 &  CntShift1 &  CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt7
+         #  CntShift0 &  CntShift1 &  CntShift2 & !CntShift3 & !CntShift4 & 
+             !FSync &  QFref
+         #  CntShift0 &  CntShift1 & !CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt3 & !FSync
+         #  CntShift0 & !CntShift1 &  CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt5 & !FSync;
+
+-- Node name is '~612~2' from file "fcnt.tdf" line 118, column 37
+-- Equation name is '~612~2', location is LC021, type is buried.
+-- synthesized logic cell 
+_LC021   = LCELL( _EQ028 $  GND);
+  _EQ028 = !CntShift0 &  CntShift1 &  CntShift2 &  CntShift3 & !CntShift4 & 
+              FinCnt6 & !FSync
+         #  CntShift0 &  CntShift1 & !CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt3
+         #  CntShift0 & !CntShift1 &  CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt5
+         # !CntShift0 &  CntShift1 &  CntShift2 & !CntShift3 &  CntShift4 & 
+             !FSync &  IntCnt6
+         #  CntShift0 &  CntShift1 & !CntShift2 & !CntShift3 & !CntShift4 & 
+              FrefCnt3 & !FSync;
+
+
+
+--     Shareable expanders that are duplicated in multiple LABs:
+--     (none)
+
+
+
+
+Project Informationd:\projects\proj_spetspribor\measuring\fc-510\altera\fcnt.rpt
+
+** COMPILATION SETTINGS & TIMES **
+
+Processing Menu Commands
+------------------------
+
+Design Doctor                             = off
+
+Logic Synthesis:
+
+   Synthesis Type Used                    = Standard
+
+   Default Synthesis Style                = NORMAL
+
+      Logic option settings in 'NORMAL' style for 'MAX3000A' family
+
+      DECOMPOSE_GATES                     = on
+      DUPLICATE_LOGIC_EXTRACTION          = on
+      MINIMIZATION                        = full
+      MULTI_LEVEL_FACTORING               = on
+      NOT_GATE_PUSH_BACK                  = on
+      PARALLEL_EXPANDERS                  = off
+      REDUCE_LOGIC                        = on
+      REFACTORIZATION                     = on
+      REGISTER_OPTIMIZATION               = on
+      RESYNTHESIZE_NETWORK                = on
+      SLOW_SLEW_RATE                      = off
+      SOFT_BUFFER_INSERTION               = on
+      SUBFACTOR_EXTRACTION                = on
+      TURBO_BIT                           = on
+      XOR_SYNTHESIS                       = on
+      IGNORE_SOFT_BUFFERS                 = off
+      USE_LPM_FOR_AHDL_OPERATORS          = off
+
+   Other logic synthesis settings:
+
+      Automatic Global Clock              = off
+      Automatic Global Clear              = off
+      Automatic Global Preset             = off
+      Automatic Global Output Enable      = off
+      Automatic Fast I/O                  = off
+      Automatic Register Packing          = off
+      Automatic Open-Drain Pins           = on
+      Automatic Implement in EAB          = off
+      One-Hot State Machine Encoding      = off
+      Optimize                            = 5
+
+Default Timing Specifications: None
+
+Cut All Bidir Feedback Timing Paths       = on
+Cut All Clear & Preset Timing Paths       = on
+
+Ignore Timing Assignments                 = off
+
+Functional SNF Extractor                  = off
+
+Linked SNF Extractor                      = off
+Timing SNF Extractor                      = on
+Optimize Timing SNF                       = off
+Generate AHDL TDO File                    = off
+Fitter Settings                           = NORMAL
+Smart Recompile                           = off
+Total Recompile                           = off
+
+Interfaces Menu Commands
+------------------------
+
+EDIF Netlist Writer                       = off
+Verilog Netlist Writer                    = off
+VHDL Netlist Writer                       = off
+
+Compilation Times
+-----------------
+
+   Compiler Netlist Extractor             00:00:01
+   Database Builder                       00:00:00
+   Logic Synthesizer                      00:00:00
+   Partitioner                            00:00:00
+   Fitter                                 00:00:00
+   Timing SNF Extractor                   00:00:00
+   Assembler                              00:00:00
+   --------------------------             --------
+   Total Time                             00:00:01
+
+
+Memory Allocated
+-----------------
+
+Peak memory allocated during compilation  = 3,458K
