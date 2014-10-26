@@ -485,7 +485,7 @@ long Count_GetValue(void)
   switch(Mode)
   {
   case MODE_F:  //frequency:
-    v = Freq + IFreq * 1000000;
+    v = Freq + (long long)IFreq * 1000000;
     break;
   case MODE_P:  //period:
   case MODE_HI: //high pulse duration:

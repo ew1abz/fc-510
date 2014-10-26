@@ -51,6 +51,7 @@ char Scan(void)
   case 0x04: d = KEY_UP; break; //key "UP"
   case 0x06: d = KEY_UD; break; //key "DOWN" + "UP"
   case 0x08: d = KEY_OK; break; //key "OK"
+  case 0x05: d = KEY_MU; break; //key "MUNU" + "UP"
   default : d = KEY_NO;
   }
   return(d);

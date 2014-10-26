@@ -11,6 +11,7 @@
 #include "Disp.h"
 #include "Sound.h"
 #include "Count.h"
+#include "Usart.h"
 
 //----------------------------- Constants: -----------------------------------
 
@@ -26,19 +27,21 @@ enum
   MNU_NO,     //no menu code
   MNU_SPLASH, //splash screen menu code
   MNU_MAIN,   //main menu code
+  MNU_IF_ADD, //IF add indication menu
   MNU_AUTO,   //auto scale indication menu
   MNU_SETUP   //setup menu code
 };
 
 enum
 {
-  PAR_MODE, //mode parameter index
-  PAR_GATE, //gate parameter index
-  PAR_AVG,  //average parameter index
-  PAR_IF,   //IF parameter index
-  PAR_PRE,  //prescaler parameter index
-  PAR_INT,  //interpolator parameter index
-  PARAMS    //params count
+  PAR_MODE,    //mode parameter index
+  PAR_GATE,    //gate parameter index
+  PAR_AVG,     //average parameter index
+  PAR_IF,      //IF parameter index
+  PAR_IF_ADD,  //IF_ADD parameter index
+  PAR_PRE,     //prescaler parameter index
+  PAR_INT,     //interpolator parameter index
+  PARAMS       //params count
 };
 
 #define PAR_GTE_MIN 10     //min gate time, ms
@@ -48,7 +51,7 @@ enum
 #define PAR_AVG_NOM 1      //nom averages
 #define PAR_AVG_MAX 100    //max averages
 #define PAR_IF_MIN -999999 //min IF frequency, x0.1 kHz
-#define PAR_IF_NOM  0      //nom IF frequency, x0.1 kHz
+#define PAR_IF_NOM  -88650 //nom IF frequency, x0.1 kHz
 #define PAR_IF_MAX  999999 //max IF frequency, x0.1 kHz
 #define PAR_PRE_MIN 1      //min precsaler ratio
 #define PAR_PRE_NOM 1      //nom precsaler ratio
@@ -73,6 +76,7 @@ static char Par_Mode;  //Mode parameter
 static int  Par_Gate;  //Gate parameter
 static char Par_Avg;   //Average parameter
 static long Par_IF;    //IF parameter
+static bool Par_IfAdd; //0: show Freq; 1: show Freq + IF
 static int  Par_Pre;   //Precscaler parameter
 static bool Par_Int;   //Interpolator parameter
 
@@ -81,6 +85,7 @@ __no_init __eeprom char EPar_Mode;  //Mode in EEPROM
 __no_init __eeprom int  EPar_Gate;  //Gate in EEPROM
 __no_init __eeprom char EPar_Avg;   //Average in EEPROM
 __no_init __eeprom long EPar_IF;    //IF in EEPROM
+__no_init __eeprom bool EPar_IfAdd; //IF_ADD in EEPROM
 __no_init __eeprom int  EPar_Pre;   //Precscalerin EEPROM
 __no_init __eeprom bool EPar_Int;   //Interpolator in EEPROM
 __no_init __eeprom char EScale[MODES]; //Scales in EEPROM
@@ -89,15 +94,16 @@ __no_init __eeprom char EScale[MODES]; //Scales in EEPROM
 
 void Mnu_Splash(bool ini);    //splash screen menu
 void Mnu_Main(bool ini);      //main menu
+void Mnu_IfAdd(bool ini);     //IF add indication menu
 void Mnu_Auto(bool ini);      //auto scale indication menu
 void Mnu_Setup(bool ini);     //setup menu
 
 void ParToEEPROM(void);       //save params to the EEPROM
 void Show_Main(char n);       //show main menu
 void Show_Setup(char m);      //show setup menu
-bool MoveDP(char key);        //move DP 
+bool MoveDP(char key);        //move DP
 bool Param_Up(char m);        //step editing param up
-bool Param_Dn(char m);        //step editing param down 
+bool Param_Dn(char m);        //step editing param down
 
 //------------------------------ Menu init: ----------------------------------
 
@@ -105,15 +111,17 @@ void Menu_Init(void)
 {
   Disp_Init();                //display init
   Keyboard_Init();            //keyboard init
+  USART_Init();               //USART init
 
   if(ESignature != SIGNATURE) //check EEPROM signature,
   {
-    Par_Mode = MODE_F;        //if error, init params
-    Par_Gate = PAR_GTE_NOM;
-    Par_Avg  = PAR_AVG_NOM;              
-    Par_IF   = PAR_IF_NOM;
-    Par_Pre  = PAR_PRE_NOM;
-    Par_Int  = 1;
+    Par_Mode  = MODE_F;        //if error, init params
+    Par_Gate  = PAR_GTE_NOM;
+    Par_Avg   = PAR_AVG_NOM;
+    Par_IF    = PAR_IF_NOM;
+    Par_IfAdd = false;
+    Par_Pre   = PAR_PRE_NOM;
+    Par_Int   = 1;
     ParToEEPROM();            //EEPROM init
     for(char i = 0; i < MODES; i++)
     EScale[i] = SCALE_NOM;    //scales init
@@ -121,37 +129,41 @@ void Menu_Init(void)
   }
   else
   {
-    Par_Mode = EPar_Mode;     //read params from EEPROM
-    Par_Gate = EPar_Gate;
-    Par_Avg  = EPar_Avg;              
-    Par_IF   = EPar_IF;
-    Par_Pre  = EPar_Pre;
-    Par_Int  = EPar_Int;
+    Par_Mode  = EPar_Mode;     //read params from EEPROM
+    Par_Gate  = EPar_Gate;
+    Par_Avg   = EPar_Avg;
+    Par_IF    = EPar_IF;
+    Par_IfAdd = EPar_IfAdd;
+    Par_Pre   = EPar_Pre;
+    Par_Int   = EPar_Int;
     Scale = EScale[Par_Mode];
   }
   Count_SetMode(Par_Mode);    //set counter mode
   Count_SetGate(Par_Gate);    //set gate time
   Count_SetAvg(Par_Avg);      //set number of averages
-  Count_SetIF(Par_IF);        //set IF
   Count_SetPre(Par_Pre);      //set prescaler ratio
   Count_SetInt(Par_Int);      //interpolator enable/disable
+  if(Par_IfAdd) Count_SetIF(Par_IF); else Count_SetIF(0);  //set IF
 
   Count_SetScale(Scale);      //set output data scale factor
   Count_Start();              //start counter
-  
+
   DispMenu = MNU_NO;          //no menu
   Hold = 0;                   //no hold mode
   Hide = 0;                   //display not hided
+#ifdef LCD16
   Menu = MNU_SPLASH;          //request splash screen menu
+#else
+  Menu = MNU_MAIN;            //request main menu
+  Sound_Beep();
+#endif
 }
 
 //----------------------------- Menu execute: --------------------------------
 
 void Menu_Exe(bool t)
 {
-#ifdef LCD16  
-  Disp_Exe(t);                    //TX display copy via UART
-#endif  
+  USART_Exe(t);                    //TX display copy via UART
   Keyboard_Exe(t);                //scan keyboard
   if(t)
   {
@@ -163,16 +175,17 @@ void Menu_Exe(bool t)
   KeyCode &= ~(REP_S | REP_F);    //clear replay flags in key code
   if(KeyCode && !ReplayS && !ReplayF)
     Sound_Beep();                 //beep if not replay
-  
+
   bool MnuIni = Menu != DispMenu; //need menu draw flag
   switch(Menu)                    //execute menus
   {
   case MNU_SPLASH:  Mnu_Splash(MnuIni); break; //splash screen menu
   case MNU_MAIN:    Mnu_Main(MnuIni);   break; //main menu
+  case MNU_IF_ADD:  Mnu_IfAdd(MnuIni);  break; //IfAdd menu
   case MNU_AUTO:    Mnu_Auto(MnuIni);   break; //auto scale menu
   case MNU_SETUP:   Mnu_Setup(MnuIni);  break; //setup menu
   }
-  
+
   if(!ReplayS && !ReplayF && (KeyCode != KEY_NO)) //if key not processed
     Sound_Bell();                    //error bell
 }
@@ -181,6 +194,7 @@ void Menu_Exe(bool t)
 
 void Mnu_Splash(bool ini)
 {
+#ifdef LCD16
   static char __flash Mnu_Str[] = {"  FC-510  "};
   //draw menu:
   if(ini)                        //if redraw needed
@@ -205,6 +219,7 @@ void Mnu_Splash(bool ini)
     KeyCode = KEY_NO;            //key code processed
     Menu = MNU_MAIN;             //go to main menu
   }
+#endif
 }
 
 //----------------------------- Main menu: -----------------------------------
@@ -263,8 +278,15 @@ void Mnu_Main(bool ini)
     DispMenu = MNU_NO;           //redraw menu
     KeyCode = KEY_NO;            //key code processed
   }
-  //DOWN key:
-  if(KeyCode != KEY_NO)          
+  //MENU + UP key:
+  if(KeyCode == KEY_MU)
+  {
+    DispMenu = MNU_NO;         //redraw menu
+    Menu = MNU_IF_ADD;         //go to IfAdd menu
+    KeyCode = KEY_NO;          //key code processed
+  }
+  //DOWN or UP or UP+DOWN key:
+  if(KeyCode != KEY_NO)
   {
     if(MoveDP(KeyCode))          //shift DP
     {
@@ -278,20 +300,49 @@ void Mnu_Main(bool ini)
   }
 }
 
+//-------------------------------- IfAdd: ------------------------------------
+
+void Mnu_IfAdd(bool ini)
+{
+  static char __flash Str_If1[] = {"  IF  On  "};
+  static char __flash Str_If0[] = {"  IF  OFF "};
+  //draw menu:
+  if(ini)                        //if redraw needed
+  {
+    if (Par_IfAdd) Par_IfAdd = 0; else Par_IfAdd = 1;
+    EPar_IfAdd = Par_IfAdd;      //save IfAdd to EEPROM
+    Disp_Clear();                //clear display
+    if(Par_IfAdd)                //show menu text
+    {Disp_PutString(Str_If1); Count_SetIF(Par_IF);}
+    else {Disp_PutString(Str_If0); Count_SetIF(0);}
+    Disp_Update();               //display update
+    MenuTimer = ms2sys(T_AUTO);  //load menu timer
+    DispMenu = Menu;             //menu displayed
+  }
+  //block keys:
+  KeyCode = KEY_NO;              //key code processed
+  //check timer:
+  if(!MenuTimer)                 //timer overflow,
+  {
+    Sound_Beep();                //beep
+    Menu = MNU_MAIN;             //go to main menu
+  }
+}
+
 //-------------------------------- Auto: -------------------------------------
 
 void Mnu_Auto(bool ini)
 {
   static char __flash Str_Auto1[] = {" Auto On  "};
-  static char __flash Str_Auto0[] = {" Auto Off "};
+  static char __flash Str_Auto0[] = {" Auto OFF "};
   //draw menu:
   if(ini)                        //if redraw needed
   {
-    Disp_Clear();                //clear display    
+    Disp_Clear();                //clear display
     if(Scale & AUTO_SCALE)       //show menu text
-      Disp_PutString(Str_Auto1);           
+      Disp_PutString(Str_Auto1);
         else Disp_PutString(Str_Auto0);
-    Disp_Update();               //display update   
+    Disp_Update();               //display update
     MenuTimer = ms2sys(T_AUTO);  //load menu timer
     DispMenu = Menu;             //menu displayed
   }
@@ -375,12 +426,13 @@ void Mnu_Setup(bool ini)
 
 void ParToEEPROM(void)
 {
-  if(EPar_Mode != Par_Mode)   EPar_Mode  = Par_Mode;
-  if(EPar_Gate != Par_Gate)   EPar_Gate  = Par_Gate;
-  if(EPar_Avg  != Par_Avg)    EPar_Avg   = Par_Avg;              
-  if(EPar_IF != Par_IF)       EPar_IF    = Par_IF;
-  if(EPar_Pre != Par_Pre)     EPar_Pre   = Par_Pre;
-  if(EPar_Int != Par_Int)     EPar_Int   = Par_Int;
+  if(EPar_Mode  != Par_Mode)   EPar_Mode  = Par_Mode;
+  if(EPar_Gate  != Par_Gate)   EPar_Gate  = Par_Gate;
+  if(EPar_Avg   != Par_Avg)    EPar_Avg   = Par_Avg;
+  if(EPar_IF    != Par_IF)     EPar_IF    = Par_IF;
+  if(EPar_IfAdd != Par_IfAdd)  EPar_IfAdd = Par_IfAdd;
+  if(EPar_Pre   != Par_Pre)    EPar_Pre   = Par_Pre;
+  if(EPar_Int   != Par_Int)    EPar_Int   = Par_Int;
   if(ESignature != SIGNATURE) ESignature = SIGNATURE;
 }
 
@@ -404,7 +456,7 @@ void Show_Main(char n)
   long min, max; char s;
   Disp_Clear();                       //clear display
   Disp_PutString(Str_V[n]);           //show value name
-  if(n == MODE_F && Par_IF)
+  if(n == MODE_F && Par_IfAdd)
   {
     Disp_SetPos(1);
     Disp_PutChar('F' + POINT);        //display point if Par_IF != 0
@@ -432,10 +484,10 @@ void Show_Main(char n)
     min = 1000000L;                   //min value for auto scale
     max = 9999999L;                   //max value for auto scale
   }
-  
+
   if(!Hide) Disp_Val(s, p, v);        //show value
   Disp_Update();                      //update display
-  
+
   if(Scale & AUTO_SCALE)              //if auto scale
   {
     if(v >= 0)
@@ -472,7 +524,7 @@ void Show_Setup(char m)
 {
   Disp_Clear();                       //clear display
   Disp_PutString(Str_P[m]);           //show param name
-  
+
   switch(m)
   {
   case PAR_MODE:
@@ -545,8 +597,8 @@ bool Param_Up(char m)
         Par_Mode++;
           else Par_Mode = 0;
       Scale = EScale[Par_Mode];
-      Count_SetMode(Par_Mode);    
-      Count_SetScale(Scale);    
+      Count_SetMode(Par_Mode);
+      Count_SetScale(Scale);
       return(1);
     }
   case PAR_GATE:                      //change gate
@@ -558,7 +610,7 @@ bool Param_Up(char m)
            Par_Gate == 2000)
           Par_Gate = Par_Gate * 2 + Par_Gate / 2; //* 2.5
             else Par_Gate = Par_Gate * 2;         //* 2
-        Count_SetGate(Par_Gate);    
+        Count_SetGate(Par_Gate);
         return(1);
       }
       break;
@@ -571,7 +623,7 @@ bool Param_Up(char m)
            Par_Avg == 20)
           Par_Avg = Par_Avg * 2 + Par_Avg / 2; //* 2.5
             else Par_Avg = Par_Avg * 2;        //* 2
-        Count_SetAvg(Par_Avg);    
+        Count_SetAvg(Par_Avg);
         return(1);
       }
       break;
@@ -581,7 +633,7 @@ bool Param_Up(char m)
       if(Par_IF < PAR_IF_MAX)
       {
         Par_IF = Par_IF + 1;
-        Count_SetIF(Par_IF);    
+        if(Par_IfAdd) Count_SetIF(Par_IF);
         return(1);
       }
       break;
@@ -591,7 +643,7 @@ bool Param_Up(char m)
       if(Par_Pre < PAR_PRE_MAX)
       {
         Par_Pre = Par_Pre + 1;
-        Count_SetPre(Par_Pre);    
+        Count_SetPre(Par_Pre);
         return(1);
       }
       break;
@@ -622,8 +674,8 @@ bool Param_Dn(char m)
         Par_Mode--;
           else Par_Mode = MODES - 1;
       Scale = EScale[Par_Mode];
-      Count_SetMode(Par_Mode);    
-      Count_SetScale(Scale);    
+      Count_SetMode(Par_Mode);
+      Count_SetScale(Scale);
       return(1);
     }
   case PAR_GATE:                      //change gate
@@ -635,8 +687,8 @@ bool Param_Dn(char m)
            Par_Gate == 5000)
           Par_Gate = (Par_Gate * 2) / 5;  // / 2.5
             else Par_Gate = Par_Gate / 2; // / 2
-        Count_SetGate(Par_Gate);    
-        return(1);    
+        Count_SetGate(Par_Gate);
+        return(1);
       }
       break;
     }
@@ -648,8 +700,8 @@ bool Param_Dn(char m)
            Par_Avg == 50)
           Par_Avg = (Par_Avg * 2) / 5;  // / 2.5
             else Par_Avg = Par_Avg / 2; // / 2
-        Count_SetAvg(Par_Avg);    
-        return(1);    
+        Count_SetAvg(Par_Avg);
+        return(1);
       }
       break;
     }
@@ -658,7 +710,7 @@ bool Param_Dn(char m)
       if(Par_IF > PAR_IF_MIN)
       {
         Par_IF = Par_IF - 1;
-        Count_SetIF(Par_IF);    
+        if(Par_IfAdd) Count_SetIF(Par_IF);
         return(1);
       }
       break;
@@ -668,7 +720,7 @@ bool Param_Dn(char m)
       if(Par_Pre > PAR_PRE_MIN)
       {
         Par_Pre = Par_Pre - 1;
-        Count_SetPre(Par_Pre);    
+        Count_SetPre(Par_Pre);
         return(1);
       }
       break;

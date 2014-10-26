@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------------
 
 //Project:         Frequency Counter FC-510
-//Version:         V1.4
-//Compiler:        IAR EWAVR 5.30
+//Version:         V1.5
+//Compiler:        IAR EWAVR 6.21
 //Microcontroller: ATmega8
 //E-mail:          wubblick@yahoo.com
 

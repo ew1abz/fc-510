@@ -14,9 +14,6 @@
 //------------------------- Function prototypes: -----------------------------
 
 void Disp_Init(void);       //display init
-#ifdef LCD16  
-  void Disp_Exe(bool t);    //TX display copy via UART
-#endif  
 void Disp_Update(void);     //copy display memory to LCD
 void Disp_Clear(void);      //display clear and set first position
 void Disp_SetPos(char p);   //set display position

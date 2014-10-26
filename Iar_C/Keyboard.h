@@ -15,6 +15,7 @@
 #define KEY_UP  0x03  //key "UP"
 #define KEY_UD  0x04  //key "DOWN" + "UP"
 #define KEY_OK  0x05  //key "OK"
+#define KEY_MU  0x06  //key "MENU" + "UP"
 
 #define REP_S   0x40  //slow autorepeat
 #define REP_F   0x80  //fast autorepeat

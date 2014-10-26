@@ -6,6 +6,7 @@
 
 #include "Main.h"
 #include "Disp.h"
+#include "Usart.h"
 
 //----------------------------- Constants: -----------------------------------
 
@@ -35,6 +36,7 @@
 
 //------------------------------ Variables: ----------------------------------
 
+static char Buf[LCD_SIZE+2]; //display copy for send to USART + 2 points
 static char Dig[LCD_SIZE]; //display copy
 static char Bcd[DIGITS];   //hex to bcd buffer
 static char Pos;           //current position (left to right, 0..9)
@@ -150,8 +152,8 @@ char Encode(char s)
   case 'D':
   case 'd': d = 0x0D; break; //character "d"
   case 'e': d = 0x0E; break; //character "E"
-  case 'F':
-  case 'f': d = 0x0F; break; //character "F"
+  case 'f':
+  case 'F': d = 0x0F; break; //character "F"
   case 'G': d = 0x10; break; //character "G"
   case 'H': d = 0x11; break; //character "H"
   case 'I': d = 0x01; break; //character "I"
@@ -163,7 +165,7 @@ char Encode(char s)
   case 'R':
   case 'r': d = 0x16; break; //character "r"
   case 't': d = 0x17; break; //character "t"
-  case 'u': d = 0x18; break; //character "t"
+  case 'u': d = 0x18; break; //character "u"
   case '-': d = 0x19; break; //character "-"
   case ' ': d = 0x1A; break; //character "blank"
   }
@@ -198,6 +200,15 @@ void Disp_Update(void)
     d = __swap_nibbles(d);
     LCD_WriteNibble(d);      //write nibble from d to LCD
   }
+  // output to USART
+  char i, j;
+  for(i = 0, j = 0; i < LCD_SIZE; i++)
+  {
+    char d = (Dig[i] & ~POINT);
+    if(d < 10) Buf[j++] = d + 0x30; else Buf[j++] = d;
+    if(Dig[i] & POINT) Buf[j++] = '.';
+  }
+  USART_Update(Buf, j); 
 }
 
 //---------------------------- Clear display: --------------------------------
