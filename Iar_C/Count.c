@@ -94,7 +94,7 @@ void Count_Init(void)
   TCCR1B = (1 << CS12) | (1 << CS11);   //timer 1 <- T1, fall edge
   TIFR = (1 << TOIE1) | (1 << TOIE0);   //clear pending interrupts
   TIMSK |= (1 << TOIE1) | (1 << TOIE0); //OVF0 and OVF1 interrupts enable
-  
+
   Mode = MODE_F;             //default mode
   Count_SetMode(Mode);       //set mode
   Count_ClearStat();         //statistics clear
@@ -105,8 +105,8 @@ void Count_Init(void)
   IFreq = IFREQ;             //load default IF value
   Prescale = PRESCALE;       //load default prescaler ratio
   Interpolate = INT_EN;      //load default interpolator state
-  
-  Scale = SCALE;             //default scale  
+
+  Scale = SCALE;             //default scale
   First = 1;                 //first measure flag set
   State = ST_STOP;           //counter stopped
 }
@@ -118,7 +118,7 @@ void Count_Exe(bool t)
   if(t)
   {
     if(Cnt_Timer) Cnt_Timer--;
-    
+
     switch(State)
     {
     case ST_START:            //START state:
@@ -286,7 +286,7 @@ void Count_Read(void)
   //100 MHz max * 10 s = 1000000000 (3B 9A CA 00)
   Count_Nx = ((long)Count_N << 24) + ((long)TCNT1 << 8) + CntN0;
 }
-  
+
 //------------------------- Calculate frequency: -----------------------------
 
 //updates Freq, Fmin, Fmax, Fdev, PulseH, PulseL
@@ -297,15 +297,15 @@ void Count_Make(void)
   //2 GHz max * 10 s * 12800000 Hz = 256000000000000000 (3 8D 7E A4 C6 80 00 00)
   int pre = Pin_FDIV? Prescale : 1;
   long long Nx = (long long)Count_Nx * F_REF * pre;
-  
+
   //save pulse width for duty cycle calculation:
   if(DutyH) PulseH = Count_Mx;
     else PulseL = Count_Mx;
-    
+
   //scale to 1/100 of resolution:
   //256000000 (F 42 40 00) * 100 = 25600000000 (5 F5 E1 00 00)
   long long Mx = (long long)Count_Mx * 100;
-    
+
   //Calculate total interpolated pulse number, scaled by 100:
   //127 * 100 * 2 * 5 (nom) = 127000
   if(Interpolate && !((Mode == MODE_HI) || (Mode == MODE_LO)))
@@ -339,7 +339,7 @@ void Count_Make(void)
 }
 
 //----------------------- Preset averaging filter: ---------------------------
-      
+
 void PresetFilter(long v)
 {
   for(char i = 0; i < Average; i++)
@@ -430,7 +430,7 @@ void Count_Start(void)
 {
   if(Mode == MODE_D)
   {
-    DutyH = !DutyH;  
+    DutyH = !DutyH;
     if(DutyH) { Port_MODE0_1; Port_MODE1_0; Port_MODE2_0; }
       else { Port_MODE0_0; Port_MODE1_1; Port_MODE2_0; }
   }
@@ -512,12 +512,13 @@ long Count_GetValue(void)
     v = Fdev;
     break;
   }
-  
-  v = (v + s / 2) / s;
+
+  if(v < 0) v = (v - s / 2) / s;
+    else v = (v + s / 2) / s;
   if(v > 0x7FFFFFFF) v = 0x7FFFFFFF;   //limit to long
   if(v < -0x7FFFFFFF) v = -0x7FFFFFFF;
   long res = (long)v;
-  
+
   //averaging:
   if(Average > 1)
   {

@@ -27,7 +27,6 @@ enum
   MNU_NO,     //no menu code
   MNU_SPLASH, //splash screen menu code
   MNU_MAIN,   //main menu code
-  MNU_IF_ADD, //IF add indication menu
   MNU_AUTO,   //auto scale indication menu
   MNU_SETUP   //setup menu code
 };
@@ -94,7 +93,6 @@ __no_init __eeprom char EScale[MODES]; //Scales in EEPROM
 
 void Mnu_Splash(bool ini);    //splash screen menu
 void Mnu_Main(bool ini);      //main menu
-void Mnu_IfAdd(bool ini);     //IF add indication menu
 void Mnu_Auto(bool ini);      //auto scale indication menu
 void Mnu_Setup(bool ini);     //setup menu
 
@@ -181,7 +179,7 @@ void Menu_Exe(bool t)
   {
   case MNU_SPLASH:  Mnu_Splash(MnuIni); break; //splash screen menu
   case MNU_MAIN:    Mnu_Main(MnuIni);   break; //main menu
-  case MNU_IF_ADD:  Mnu_IfAdd(MnuIni);  break; //IfAdd menu
+//  case MNU_IF_ADD:  Mnu_IfAdd(MnuIni);  break; //IfAdd menu
   case MNU_AUTO:    Mnu_Auto(MnuIni);   break; //auto scale menu
   case MNU_SETUP:   Mnu_Setup(MnuIni);  break; //setup menu
   }
@@ -281,9 +279,12 @@ void Mnu_Main(bool ini)
   //MENU + UP key:
   if(KeyCode == KEY_MU)
   {
-    DispMenu = MNU_NO;         //redraw menu
-    Menu = MNU_IF_ADD;         //go to IfAdd menu
-    KeyCode = KEY_NO;          //key code processed
+    if(Par_IfAdd) { Par_IfAdd = 0; Count_SetIF(0); }
+    else { Par_IfAdd = 1; Count_SetIF(Par_IF); }
+    EPar_IfAdd = Par_IfAdd;      //save IfAdd to EEPROM
+    Disp_Update();               //display update
+    DispMenu = MNU_NO;           //redraw menu
+    KeyCode = KEY_NO;            //key code processed
   }
   //DOWN or UP or UP+DOWN key:
   if(KeyCode != KEY_NO)
@@ -302,32 +303,32 @@ void Mnu_Main(bool ini)
 
 //-------------------------------- IfAdd: ------------------------------------
 
-void Mnu_IfAdd(bool ini)
-{
-  static char __flash Str_If1[] = {"  IF  On  "};
-  static char __flash Str_If0[] = {"  IF  OFF "};
-  //draw menu:
-  if(ini)                        //if redraw needed
-  {
-    if (Par_IfAdd) Par_IfAdd = 0; else Par_IfAdd = 1;
-    EPar_IfAdd = Par_IfAdd;      //save IfAdd to EEPROM
-    Disp_Clear();                //clear display
-    if(Par_IfAdd)                //show menu text
-    {Disp_PutString(Str_If1); Count_SetIF(Par_IF);}
-    else {Disp_PutString(Str_If0); Count_SetIF(0);}
-    Disp_Update();               //display update
-    MenuTimer = ms2sys(T_AUTO);  //load menu timer
-    DispMenu = Menu;             //menu displayed
-  }
-  //block keys:
-  KeyCode = KEY_NO;              //key code processed
-  //check timer:
-  if(!MenuTimer)                 //timer overflow,
-  {
-    Sound_Beep();                //beep
-    Menu = MNU_MAIN;             //go to main menu
-  }
-}
+//void Mnu_IfAdd(bool ini)
+//{
+//  static char __flash Str_If1[] = {"  IF  On  "};
+//  static char __flash Str_If0[] = {"  IF  OFF "};
+//  //draw menu:
+//  if(ini)                        //if redraw needed
+//  {
+//    if (Par_IfAdd) Par_IfAdd = 0; else Par_IfAdd = 1;
+//    EPar_IfAdd = Par_IfAdd;      //save IfAdd to EEPROM
+//    Disp_Clear();                //clear display
+//    if(Par_IfAdd)                //show menu text
+//    {Disp_PutString(Str_If1); Count_SetIF(Par_IF);}
+//    else {Disp_PutString(Str_If0); Count_SetIF(0);}
+//    Disp_Update();               //display update
+//    MenuTimer = ms2sys(T_AUTO);  //load menu timer
+//    DispMenu = Menu;             //menu displayed
+//  }
+//  //block keys:
+//  KeyCode = KEY_NO;              //key code processed
+//  //check timer:
+//  if(!MenuTimer)                 //timer overflow,
+//  {
+//    Sound_Beep();                //beep
+//    Menu = MNU_MAIN;             //go to main menu
+//  }
+//}
 
 //-------------------------------- Auto: -------------------------------------
 
