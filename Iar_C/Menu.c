@@ -301,35 +301,6 @@ void Mnu_Main(bool ini)
   }
 }
 
-//-------------------------------- IfAdd: ------------------------------------
-
-//void Mnu_IfAdd(bool ini)
-//{
-//  static char __flash Str_If1[] = {"  IF  On  "};
-//  static char __flash Str_If0[] = {"  IF  OFF "};
-//  //draw menu:
-//  if(ini)                        //if redraw needed
-//  {
-//    if (Par_IfAdd) Par_IfAdd = 0; else Par_IfAdd = 1;
-//    EPar_IfAdd = Par_IfAdd;      //save IfAdd to EEPROM
-//    Disp_Clear();                //clear display
-//    if(Par_IfAdd)                //show menu text
-//    {Disp_PutString(Str_If1); Count_SetIF(Par_IF);}
-//    else {Disp_PutString(Str_If0); Count_SetIF(0);}
-//    Disp_Update();               //display update
-//    MenuTimer = ms2sys(T_AUTO);  //load menu timer
-//    DispMenu = Menu;             //menu displayed
-//  }
-//  //block keys:
-//  KeyCode = KEY_NO;              //key code processed
-//  //check timer:
-//  if(!MenuTimer)                 //timer overflow,
-//  {
-//    Sound_Beep();                //beep
-//    Menu = MNU_MAIN;             //go to main menu
-//  }
-//}
-
 //-------------------------------- Auto: -------------------------------------
 
 void Mnu_Auto(bool ini)
@@ -633,7 +604,8 @@ bool Param_Up(char m)
     {
       if(Par_IF < PAR_IF_MAX)
       {
-        Par_IF = Par_IF + 1;
+        if(!ReplayF) Par_IF = Par_IF + 1;
+          else Par_IF = Par_IF + 100;
         if(Par_IfAdd) Count_SetIF(Par_IF);
         return(1);
       }
@@ -710,7 +682,8 @@ bool Param_Dn(char m)
     {
       if(Par_IF > PAR_IF_MIN)
       {
-        Par_IF = Par_IF - 1;
+        if(!ReplayF) Par_IF = Par_IF - 1;
+          else Par_IF = Par_IF - 100;
         if(Par_IfAdd) Count_SetIF(Par_IF);
         return(1);
       }
