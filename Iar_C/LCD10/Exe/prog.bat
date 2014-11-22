@@ -1,6 +1,7 @@
 @echo off
-set prog=e:\programs\avrdude\avrdude
-set port=COM9
+rem set prog=e:\programs\avrdude\avrdude
+set prog=c:\Progra~1\avrdude\avrdude
+set port=COM7
 set uc=m8
 set flash="FC-510.hex"
 rem set efuse=0x01

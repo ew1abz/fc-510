@@ -19,6 +19,6 @@
 @REM 
 
 
-"E:\programs\IAR Systems\Embedded Workbench 6.5\common\bin\cspybat" "E:\programs\IAR Systems\Embedded Workbench 6.5\avr\bin\avrproc.dll" "E:\programs\IAR Systems\Embedded Workbench 6.5\avr\bin\avrsim.dll"  %1 --plugin "E:\programs\IAR Systems\Embedded Workbench 6.5\avr\bin\avrlibsupportbat.dll" --backend -B "--cpu=m8" "--enhanced_core" "-p" "E:\programs\IAR Systems\Embedded Workbench 6.5\avr\Config\iom8.ddf" "--eeprom_size" "512" "-d" "sim" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\common\bin\cspybat" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\avr\bin\avrproc.dll" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\avr\bin\avrsim.dll"  %1 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\avr\bin\avrlibsupportbat.dll" --backend -B "--cpu=m8" "--enhanced_core" "-p" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\avr\Config\iom8.ddf" "--eeprom_size" "512" "-d" "sim" 
 
 

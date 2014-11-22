@@ -14,20 +14,21 @@
 
 enum
 {
-  MODE_F,  //frequency meter mode
-  MODE_P,  //period meter mode
-  MODE_HI, //hi-pulse duration meter mode
-  MODE_LO, //lo-pulse duration meter mode
-  MODE_D,  //duty cycle meter mode
-  MODE_R,  //rpm meter mode
-  MODE_FH, //frequency high statictic mode
-  MODE_FL, //frequency low statictic mode
-  MODE_DF, //frequency deviation statictic mode
-  //MODE_N   //event counter mode
-  //MODE_GC  //gated counter mode
-  //MODE_CU  //up counter mode
-  //MODE_CD  //down counter mode
-  MODES    //modes count  
+  MODE_F,   //frequency meter mode
+  MODE_FIF, //frequency meter mode
+  MODE_P,   //period meter mode
+  MODE_HI,  //hi-pulse duration meter mode
+  MODE_LO,  //lo-pulse duration meter mode
+  MODE_D,   //duty cycle meter mode
+  MODE_R,   //rpm meter mode
+  MODE_FH,  //frequency high statictic mode
+  MODE_FL,  //frequency low statictic mode
+  MODE_DF,  //frequency deviation statictic mode
+  //MODE_N    //event counter mode
+  //MODE_GC   //gated counter mode
+  //MODE_CU   //up counter mode
+  //MODE_CD   //down counter mode
+  MODES     //modes count
 };
 
 //------------------------- Function prototypes: -----------------------------

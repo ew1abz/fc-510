@@ -1,108 +1,36 @@
 //----------------------------------------------------------------------------
 
-//LCD 1601 support module
+//Display support module
 
 //----------------------------------------------------------------------------
 
 #include "Main.h"
 #include "Disp.h"
-#include "Usart.h"
+#include "Lcd.h"
+#include "Port.h"
 
 //----------------------------- Constants: -----------------------------------
 
-//#define LCD1601            //LCD 1601 addressing mode: 00..07, 40..47
-
-#define LCD_SIZE 16        //size of LCD
+#ifdef LCD16XX
+  #define LCD_SIZE 16      //size of LCD16XX
+#else
+  #define LCD_SIZE 10      //size of LCD10
+#endif
+#define MSG_SIZE 16        //size of message string
 #define DIGITS   10        //number of BCD digits 
 
 //------------------------------ Variables: ----------------------------------
 
-static char Lcd[LCD_SIZE]; //display copy
+static char Msg[MSG_SIZE]; //message string
 static char Bcd[DIGITS];   //hex to bcd buffer
 static char Pos;           //current position
+#ifdef LCD10
+  static char SkipPos;     //skipped position
+#endif
 
 //------------------------- Function prototypes: -----------------------------
 
-void LCD_Wr4(char d);      //write nibble to LCD
-void LCD_WrCmd(char d);    //write command to LCD
-void LCD_WrData(char d);   //write data to LCD
-void Delay_ms(int d);      //ms range delay
-void LCD_Clear(void);      //LCD clear
-void LCD_Pos(char pos);    //set LCD position
 void Long2BCD(unsigned long x, char *buff); //convert long to BCD
-
-//------------------------ Write nibble to LCD: ------------------------------
-
-void LCD_Wr4(char d)
-{
-  for(char i = 0; i < 5; i++)
-  {
-    Port_SCLK_0;
-    if(d & 0x10) Port_DATA_1;
-      else Port_DATA_0;
-    d = d << 1;
-    Port_SCLK_1;
-  }
-  Port_LOAD_1;        //E <- 1
-  Port_DATA_1;
-  Delay_us(2);        //delay 2 uS
-  Port_LOAD_0;        //E <- 0
-}
-
-//--------------------- Write command to LCD (RS = 0): -----------------------
-
-void LCD_WrCmd(char d)
-{
-  LCD_Wr4(__swap_nibbles(d) & 0x0F);
-  Delay_us(10);
-  LCD_Wr4(d & 0x0F);
-  Delay_us(50);
-}
-
-//---------------------- Write data to LCD (RS = 1): -------------------------
-
-void LCD_WrData(char d)
-{
-  LCD_Wr4(__swap_nibbles(d) | 0x10);
-  Delay_us(10);
-  LCD_Wr4(d | 0x10);
-  Delay_us(50);
-}
-
-//-------------------------- ms range delay: ---------------------------------
-
-void Delay_ms(int d)
-{
-  while(d)
-  {
-    Delay_us(1000);
-    __watchdog_reset();
-    d--;
-  }
-}
-
-//------------------------------ LCD clear: ----------------------------------
-
-void LCD_Clear(void)
-{
-  LCD_WrCmd(0x01);    //DISPLAY CLEAR
-  Delay_ms(5);        //delay >1.64mS
-}
-
-//--------------------------- Set LCD position: ------------------------------
-
-//pos = 1..16
-
-void LCD_Pos(char pos)
-{
-  pos = pos - 1;
-#ifdef LCD1601  
-  if(pos > 7)
-    pos = (pos & 0x07) | 0x40;
-#endif  
-  pos = pos | 0x80;
-  LCD_WrCmd(pos);
-}
 
 //------------------------- Long2BCD conversion: -----------------------------
 
@@ -137,24 +65,7 @@ void Long2BCD(unsigned long x, char *buff)
 
 void Disp_Init(void)
 {
-  Port_LOAD_0;         //E <- 0
-  Delay_ms(15);
-  LCD_WrCmd(0x30);
-  Delay_ms(5);         //delay >4.1 mS
-  LCD_WrCmd(0x30);
-  Delay_us(100);       //delay >100 uS
-  LCD_WrCmd(0x30);
-  Delay_ms(5);         //delay >4.1 mS
-  LCD_WrCmd(0x20);     //FUNCTION SET (8 bit)
-  Delay_ms(15);
-  LCD_WrCmd(0x28);     //FUNCTION SET (4 bit)
-  Delay_ms(15);
-  LCD_WrCmd(0x0C);     //DISPLAY ON
-  Delay_ms(15);
-  LCD_WrCmd(0x06);     //ENTRY MODE SET
-  Delay_ms(15);
-  LCD_Clear();         //CLEAR
-  Delay_ms(15);
+  LCD_Init();
   Disp_Clear();        //clear display
 }
 
@@ -173,11 +84,12 @@ void Disp_Update(void)
   char pos = Pos;
   //add units:
   Disp_SetPos(14);
-  char c = Lcd[0];
-  if(Lcd[1] == 'F') c = 'F';
-  if(Lcd[1] == 'r') c = ' ';
+  char c = Msg[0];
+  if(Msg[1] == 'F') c = 'F';
+  if(Msg[1] == 'r') c = ' ';
   switch(c)
   {
+  case 'f':
   case 'F':
     Disp_PutString(Str_U[0]);
     break;
@@ -193,25 +105,40 @@ void Disp_Update(void)
   default:  
     Disp_PutString(Str_U[3]);
   }
+  //load display:
   LCD_Pos(1);
+  char ptr = 0;
   for(char i = 0; i < LCD_SIZE; i++)
   {
 #ifdef LCD1601  
     if(i == 8) LCD_Pos(9);
-#endif  
-    LCD_WrData(Lcd[i]);
+#endif
+    char s = Msg[ptr++];
+#ifdef LCD10
+    if(s == 'f') s = 'F' + POINT;
+    if((ptr < MSG_SIZE) && (Msg[ptr] == '.'))
+    {
+      s = s + POINT;
+      ptr++;
+    }
+    if(ptr == SkipPos) s = Msg[ptr++];
+#endif
+    LCD_WrData(s);    
   }
   Pos = pos;
-  USART_Update(Lcd, LCD_SIZE); //TxPtr = 0; //request to TX 
+  Port_StartTX(); //request to TX 
 }
 
 //---------------------------- Clear display: --------------------------------
 
 void Disp_Clear(void)
 {
-  for(char i = 0; i < LCD_SIZE; i++)
-    Lcd[i] = ' ';
+  for(char i = 0; i < MSG_SIZE; i++)
+    Msg[i] = ' ';
   Pos = 0;
+#ifdef LCD10
+  SkipPos = MSG_SIZE;
+#endif    
   Disp_Update();
 }
 
@@ -220,7 +147,7 @@ void Disp_Clear(void)
 void Disp_SetPos(char p)
 {
   if(p < 1) p = 1;
-  if(p > LCD_SIZE) p = LCD_SIZE;
+  if(p > MSG_SIZE) p = MSG_SIZE;
   Pos = p - 1;
 }
 
@@ -228,9 +155,9 @@ void Disp_SetPos(char p)
 
 void Disp_PutChar(char c)
 {
-  if(Pos < LCD_SIZE)
+  if(Pos < MSG_SIZE)
   {
-    Lcd[Pos++] = c;
+    Msg[Pos++] = c;
   }
 }
 
@@ -256,6 +183,9 @@ void Disp_Val(char s, char p, long v)
   char i; bool minus = 0;
   s--; p--; //align to 0..9 range
   char n = s + 1; //skip one position
+#ifdef LCD10
+  SkipPos = s; //save skipped position
+#endif  
   if(v < 0) { v = -v; minus = 1; }
   Long2BCD(v, Bcd);
   //check for overflow:
@@ -267,8 +197,8 @@ void Disp_Val(char s, char p, long v)
   if(i != s)
   {
     for(i = s; i < DIGITS; i++)
-      Lcd[n++] = '-';
-      if(i == p) Lcd[n++] = '.';
+      Msg[n++] = '-';
+      if(i == p) Msg[n++] = '.'; //insert point
   }
   //if not overflow, display value:
   else
@@ -278,12 +208,20 @@ void Disp_Val(char s, char p, long v)
     {
       char d = Bcd[i];
       if(minus && (ch == ' ') && (d || (i == p)))
-        Lcd[n - 1] = '-';
-      if((ch != ' ') || d || (i == p)) ch = d + 0x30;
-      Lcd[n++] = ch;
-      if(i == p) Lcd[n++] = '.';
+        Msg[n - 1] = '-';
+      if((ch != ' ') || d || (i == p))
+        ch = d + 0x30;
+      Msg[n++] = ch;
+      if(i == p) Msg[n++] = '.'; //insert point
     }
   }
+}
+
+//--------------------- Get char from message buffer: ------------------------
+
+char Disp_GetChar(char n)
+{
+  return(Msg[n]);
 }
 
 //----------------------------------------------------------------------------

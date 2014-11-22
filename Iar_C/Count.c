@@ -484,31 +484,34 @@ long Count_GetValue(void)
 
   switch(Mode)
   {
-  case MODE_F:  //frequency:
-    v = Freq + (long long)IFreq * 1000000;
-    break;
-  case MODE_P:  //period:
-  case MODE_HI: //high pulse duration:
-  case MODE_LO: //low pulse duration:
+  case MODE_F:   //frequency:
     v = Freq;
     break;
-  case MODE_D: //duty cycle:
+  case MODE_FIF: //frequency ± IF:
+    v = Freq + (long long)IFreq * 1000000;
+    break;
+  case MODE_P:   //period:
+  case MODE_HI:  //high pulse duration:
+  case MODE_LO:  //low pulse duration:
+    v = Freq;
+    break;
+  case MODE_D:   //duty cycle:
     if(PulseH && PulseL)
     {
       v = ((long long)PulseH * 10000000 +
              (PulseL + PulseH) / 2) / (PulseL + PulseH);
     }
     break;
-  case MODE_R: //rpm:
+  case MODE_R:   //rpm:
     v = Freq * 60000;
     break;
-  case MODE_FH: //frequency high:
+  case MODE_FH:  //frequency high:
     v = Fmax;
     break;
-  case MODE_FL: //frequency low:
+  case MODE_FL:  //frequency low:
     v = Fmin;
     break;
-  case MODE_DF: //frequency deviation:
+  case MODE_DF:  //frequency deviation:
     v = Fdev;
     break;
   }

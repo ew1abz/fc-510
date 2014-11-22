@@ -2,77 +2,140 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2583361764</fileChecksum>
+  <fileChecksum>2681434039</fileChecksum>
   <configuration>
     <name>LCD10</name>
     <outputs>
-      <file>$PROJ_DIR$\LCD10\Obj\Main.r90</file>
-      <file>$PROJ_DIR$\LCD10\List\Main.lst</file>
-      <file>$PROJ_DIR$\LCD10\List\Keyboard.lst</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Count.r90</file>
-      <file>$PROJ_DIR$\Disp16.c</file>
-      <file>$PROJ_DIR$\Disp10.c</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Count.pbi</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
-      <file>$PROJ_DIR$\Menu.h</file>
-      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iom8.inc</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Usart.r90</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Usart.pbi</file>
-      <file>$PROJ_DIR$\LCD10\List\Usart.lst</file>
+      <file>$PROJ_DIR$\Disp.c</file>
       <file>$PROJ_DIR$\Keyboard.c</file>
+      <file>$PROJ_DIR$\Count.c</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Lcd16xx.r90</file>
+      <file>$PROJ_DIR$\Lcd10.c</file>
+      <file>$PROJ_DIR$\Lcd16xx.c</file>
       <file>$PROJ_DIR$\Main.c</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Sound.r90</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
-      <file>$PROJ_DIR$\LCD10\Exe\FC-510.hex</file>
-      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Disp10.r90</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Disp16.pbi</file>
-      <file>$PROJ_DIR$\LCD10\List\Count.lst</file>
-      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
-      <file>$PROJ_DIR$\Main.h</file>
-      <file>$PROJ_DIR$\Usart.h</file>
-      <file>$PROJ_DIR$\LCD10\List\Disp10.lst</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Main.pbi</file>
-      <file>$PROJ_DIR$\LCD10\List\Sound.lst</file>
+      <file>$PROJ_DIR$\Menu.c</file>
+      <file>$PROJ_DIR$\Port.c</file>
+      <file>$PROJ_DIR$\Sound.c</file>
       <file>$PROJ_DIR$\LCD10\Obj\Sound.pbi</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Main.r90</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Count.pbi</file>
       <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
       <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
-      <file>$PROJ_DIR$\Keyboard.h</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
-      <file>$PROJ_DIR$\Sound.h</file>
-      <file>$PROJ_DIR$\Count.h</file>
-      <file>$PROJ_DIR$\Disp.h</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Keyboard.pbi</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Menu.pbi</file>
-      <file>$PROJ_DIR$\LCD10\List\FC-510.map</file>
-      <file>$PROJ_DIR$\LCD10\List\Menu.lst</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Disp10.pbi</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Menu.r90</file>
-      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
-      <file>$PROJ_DIR$\Count.c</file>
-      <file>$PROJ_DIR$\Menu.c</file>
-      <file>$PROJ_DIR$\Sound.c</file>
-      <file>$PROJ_DIR$\Usart.c</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Disp16.r90</file>
-      <file>$PROJ_DIR$\LCD10\Obj\Keyboard.r90</file>
       <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Count.r90</file>
+      <file>$PROJ_DIR$\LCD10\List\Main.lst</file>
+      <file>$PROJ_DIR$\LCD10\Exe\FC-510.hex</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Disp10.pbi</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Disp10.r90</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Main.pbi</file>
+      <file>$PROJ_DIR$\Disp10.c</file>
+      <file>$PROJ_DIR$\Count.h</file>
+      <file>$PROJ_DIR$\Main.h</file>
+      <file>$PROJ_DIR$\LCD10\List\Count.lst</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Disp.pbi</file>
+      <file>$PROJ_DIR$\Lcd.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Lcd16xx.pbi</file>
+      <file>$PROJ_DIR$\LCD10\List\Disp.lst</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Disp16.r90</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Menu.r90</file>
+      <file>$PROJ_DIR$\LCD10\List\Menu.lst</file>
+      <file>$PROJ_DIR$\Menu.h</file>
+      <file>$PROJ_DIR$\Keyboard.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Menu.pbi</file>
+      <file>$PROJ_DIR$\LCD10\List\Sound.lst</file>
+      <file>$PROJ_DIR$\Sound.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\FC-510.pbd</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Sound.r90</file>
+      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iom8.inc</file>
+      <file>$PROJ_DIR$\Port.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Lcd10.pbi</file>
+      <file>$PROJ_DIR$\LCD10\List\Lcd10.lst</file>
+      <file>$PROJ_DIR$\Disp.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Disp16.pbi</file>
+      <file>$PROJ_DIR$\LCD10\List\Disp10.lst</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Keyboard.pbi</file>
+      <file>$PROJ_DIR$\LCD10\List\Keyboard.lst</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Keyboard.r90</file>
+      <file>$PROJ_DIR$\Disp16.c</file>
+      <file>$PROJ_DIR$\LCD10\List\FC-510.map</file>
+      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Port.pbi</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Lcd10.r90</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Disp.r90</file>
+      <file>$PROJ_DIR$\LCD10\Obj\Port.r90</file>
+      <file>$PROJ_DIR$\LCD10\List\Port.lst</file>
     </outputs>
     <file>
-      <name>$PROJ_DIR$\Disp16.c</name>
+      <name>$PROJ_DIR$\Disp.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 47</file>
+          <name>BICOMP</name>
+          <file> 30</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 20</file>
+          <name>ICCAVR</name>
+          <file> 33 60</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 23 18 22 49 32 16 29 35</file>
+          <file> 26 57 22 45 15 28 19 13 49 31 46</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 49 31 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Keyboard.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 53 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 39</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Count.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 27 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 25</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 25</file>
         </tool>
       </inputs>
     </file>
@@ -81,53 +144,49 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 17 38</file>
+          <file> 18 56</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Disp10.c</name>
+      <name>$PROJ_DIR$\Lcd10.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 19</file>
+          <name>BICOMP</name>
+          <file> 47</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 40</file>
+          <name>ICCAVR</name>
+          <file> 48 59</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 35 24</file>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 31</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 35 24</file>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 31</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Keyboard.c</name>
+      <name>$PROJ_DIR$\Lcd16xx.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 2 48</file>
+          <name>BICOMP</name>
+          <file> 32</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 36</file>
+          <name>ICCAVR</name>
+          <file> 3</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 31</file>
-        </tool>
-        <tool>
           <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 31</file>
+          <file> 26 57 22 45 15 28 19 13 49 46 39</file>
         </tool>
       </inputs>
     </file>
@@ -135,22 +194,91 @@
       <name>$PROJ_DIR$\Main.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 1 0</file>
+          <name>BICOMP</name>
+          <file> 23</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 26</file>
+          <name>ICCAVR</name>
+          <file> 17 11</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 34 8 33</file>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 25 38 42</file>
         </tool>
         <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 25 38 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Menu.c</name>
+      <outputs>
+        <tool>
           <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 34 8 33</file>
+          <file> 40</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 37 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 38 39 49 46 42 25</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 38 39 49 46 42 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Port.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 62 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 46 49 39</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 46 49 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Sound.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 41 44</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 42</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 42</file>
         </tool>
       </inputs>
     </file>
@@ -159,13 +287,174 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 38</file>
+          <file> 56</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 42 30 3 19 48 0 41 15 10 7</file>
+          <file> 35 14 16 60 54 59 11 36 61 44 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Disp10.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 51 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 45 15 28 19 13 49</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 57 22 45 15 28 19 13 49</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Disp16.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26 57 22 15 28 19 13 49</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Lcd16xx.c</name>
+      <tool>ICCAVR</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Disp16.c</name>
+      <tool>ICCAVR</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>LCD1601</name>
+    <outputs>
+      <file>$PROJ_DIR$\Disp.c</file>
+      <file>$PROJ_DIR$\Keyboard.c</file>
+      <file>$PROJ_DIR$\Count.c</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Disp16.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Disp16.r90</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Main.r90</file>
+      <file>$PROJ_DIR$\LCD1601\List\FC-510.map</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Keyboard.r90</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Sound.r90</file>
+      <file>$PROJ_DIR$\LCD1601\List\Count.lst</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Disp.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\FC-510.pbd</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Menu.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Main.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Sound.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Keyboard.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\List\Lcd16xx.lst</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Lcd16xx.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\List\Keyboard.lst</file>
+      <file>$PROJ_DIR$\LCD1601\List\Disp.lst</file>
+      <file>$PROJ_DIR$\LCD1601\List\Port.lst</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Disp.r90</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Port.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\List\Sound.lst</file>
+      <file>$PROJ_DIR$\LCD1601\List\Main.lst</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Lcd16xx.r90</file>
+      <file>$PROJ_DIR$\LCD1601\List\Menu.lst</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Count.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Menu.r90</file>
+      <file>$PROJ_DIR$\LCD1601\List\Disp16.lst</file>
+      <file>$PROJ_DIR$\LCD1601\Exe\FC-510.hex</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Lcd10.pbi</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Port.r90</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Lcd10.r90</file>
+      <file>$PROJ_DIR$\LCD1601\Obj\Count.r90</file>
+      <file>$PROJ_DIR$\Lcd10.c</file>
+      <file>$PROJ_DIR$\Lcd16xx.c</file>
+      <file>$PROJ_DIR$\Main.c</file>
+      <file>$PROJ_DIR$\Menu.c</file>
+      <file>$PROJ_DIR$\Port.c</file>
+      <file>$PROJ_DIR$\Sound.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Count.h</file>
+      <file>$PROJ_DIR$\Main.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
+      <file>$PROJ_DIR$\Lcd.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
+      <file>$PROJ_DIR$\Menu.h</file>
+      <file>$PROJ_DIR$\Keyboard.h</file>
+      <file>$PROJ_DIR$\Sound.h</file>
+      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iom8.inc</file>
+      <file>$PROJ_DIR$\Port.h</file>
+      <file>$PROJ_DIR$\Disp.h</file>
+      <file>$PROJ_DIR$\Disp16.c</file>
+      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Disp.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 19 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 57 50 56</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 57 50 56</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Keyboard.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 18 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 53</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 53</file>
         </tool>
       </inputs>
     </file>
@@ -173,188 +462,37 @@
       <name>$PROJ_DIR$\Count.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 21 3</file>
+          <name>BICOMP</name>
+          <file> 27</file>
         </tool>
         <tool>
+          <name>ICCAVR</name>
+          <file> 9 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
           <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 46</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\LCD1601\Exe\FC-510.hex</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
           <file> 6</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 34</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Menu.c</name>
-      <outputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 39 41</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 37</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 8 31 35 33 34 24</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 8 31 35 33 34 24</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Sound.c</name>
-      <outputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 27 15</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 28</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 33</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 33</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Usart.c</name>
-      <outputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 12 10</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 11</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 23 18 22 9 49 32 16 29 31 24</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23 18 22 9 49 32 16 29 31 24</file>
-        </tool>
-      </inputs>
-    </file>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\Disp16.c</name>
-      <tool>ICCAVR</tool>
-    </forcedrebuild>
-  </configuration>
-  <configuration>
-    <name>LCD16</name>
-    <outputs>
-      <file>$PROJ_DIR$\LCD16\Obj\Main.pbi</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Keyboard.r90</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Disp10.r90</file>
-      <file>$PROJ_DIR$\LCD16\Exe\FC-510.hex</file>
-      <file>$PROJ_DIR$\LCD16\List\Sound.lst</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Sound.r90</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Count.r90</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Menu.pbi</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Keyboard.pbi</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Disp16.pbi</file>
-      <file>$PROJ_DIR$\LCD16\List\Menu.lst</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Sound.pbi</file>
-      <file>$PROJ_DIR$\LCD16\List\Usart.lst</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Usart.pbi</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Usart.r90</file>
-      <file>$PROJ_DIR$\Disp16.c</file>
-      <file>$PROJ_DIR$\Disp10.c</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
-      <file>$PROJ_DIR$\Menu.h</file>
-      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iom8.inc</file>
-      <file>$PROJ_DIR$\Keyboard.c</file>
-      <file>$PROJ_DIR$\Main.c</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
-      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
-      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
-      <file>$PROJ_DIR$\Main.h</file>
-      <file>$PROJ_DIR$\Usart.h</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Count.pbi</file>
-      <file>$PROJ_DIR$\LCD16\List\Main.lst</file>
-      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
-      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
-      <file>$PROJ_DIR$\Keyboard.h</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
-      <file>$PROJ_DIR$\Sound.h</file>
-      <file>$PROJ_DIR$\Count.h</file>
-      <file>$PROJ_DIR$\Disp.h</file>
-      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
-      <file>$PROJ_DIR$\Count.c</file>
-      <file>$PROJ_DIR$\Menu.c</file>
-      <file>$PROJ_DIR$\Sound.c</file>
-      <file>$PROJ_DIR$\Usart.c</file>
-      <file>$PROJ_DIR$\LCD16\List\FC-510.map</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Disp10.pbi</file>
-      <file>$PROJ_DIR$\LCD16\List\Keyboard.lst</file>
-      <file>$PROJ_DIR$\LCD16\List\Disp16.lst</file>
-      <file>$PROJ_DIR$\LCD16\List\Count.lst</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Disp16.r90</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Menu.r90</file>
-      <file>$PROJ_DIR$\LCD16\Obj\Main.r90</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-    </outputs>
-    <file>
-      <name>$PROJ_DIR$\LCD16\Exe\FC-510.hex</name>
-      <outputs>
-        <tool>
           <name>XLINK</name>
-          <file> 41</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 36 30 6 46 1 48 47 5 14 17</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Disp16.c</name>
-      <outputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 44 46</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 9</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 35 26</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 35 26</file>
+          <file> 51 42 34 21 7 25 5 28 32 8 49</file>
         </tool>
       </inputs>
     </file>
@@ -363,49 +501,49 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 3 41</file>
+          <file> 30 6</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Disp10.c</name>
+      <name>$PROJ_DIR$\Lcd10.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 2</file>
+          <name>BICOMP</name>
+          <file> 31</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 42</file>
+          <name>ICCAVR</name>
+          <file> 33</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 25 23 24 49 32 22 29 35</file>
+          <file> 47 59 45 55 43 48 44 41 57</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Keyboard.c</name>
+      <name>$PROJ_DIR$\Lcd16xx.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 43 1</file>
+          <name>BICOMP</name>
+          <file> 17</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 8</file>
+          <name>ICCAVR</name>
+          <file> 16 25</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 31</file>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 50</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 31</file>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 50</file>
         </tool>
       </inputs>
     </file>
@@ -413,45 +551,22 @@
       <name>$PROJ_DIR$\Main.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 28 48</file>
+          <name>BICOMP</name>
+          <file> 13</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 0</file>
+          <name>ICCAVR</name>
+          <file> 24 5</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 34 18 33</file>
-        </tool>
-        <tool>
           <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 34 18 33</file>
+          <file> 47 59 45 55 43 48 44 41 46 52 54</file>
         </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Count.c</name>
-      <outputs>
         <tool>
           <name>ICCAVR</name>
-          <file> 45 6</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 27</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 34</file>
+          <file> 47 59 45 55 43 48 44 41 46 52 54</file>
         </tool>
       </inputs>
     </file>
@@ -459,22 +574,45 @@
       <name>$PROJ_DIR$\Menu.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 10 47</file>
+          <name>BICOMP</name>
+          <file> 12</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 7</file>
+          <name>ICCAVR</name>
+          <file> 26 28</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 18 31 35 33 34 26</file>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 52 53 57 56 54 46</file>
         </tool>
         <tool>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 52 53 57 56 54 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Port.c</name>
+      <outputs>
+        <tool>
           <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 18 31 35 33 34 26</file>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 20 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 56 57 53</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 56 57 53</file>
         </tool>
       </inputs>
     </file>
@@ -482,45 +620,364 @@
       <name>$PROJ_DIR$\Sound.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 4 5</file>
+          <name>BICOMP</name>
+          <file> 14</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 11</file>
+          <name>ICCAVR</name>
+          <file> 23 8</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 33</file>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 54</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 33</file>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 54</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Usart.c</name>
+      <name>$PROJ_DIR$\Disp16.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 12 14</file>
+          <name>BICOMP</name>
+          <file> 3</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 13</file>
+          <name>ICCAVR</name>
+          <file> 29 4</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 23 24 19 49 32 22 29 31 26</file>
+          <name>BICOMP</name>
+          <file> 47 59 45 55 43 48 44 41 57 56 53</file>
         </tool>
         <tool>
+          <name>ICCAVR</name>
+          <file> 47 59 45 55 43 48 44 41 57 56 53</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Disp10.c</name>
+      <tool>ICCAVR</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>LCD1602</name>
+    <outputs>
+      <file>$PROJ_DIR$\Disp.c</file>
+      <file>$PROJ_DIR$\Keyboard.c</file>
+      <file>$PROJ_DIR$\Count.c</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Menu.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Menu.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Exe\FC-510.hex</file>
+      <file>$PROJ_DIR$\LCD1602\List\Keyboard.lst</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Keyboard.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Disp16.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Lcd10.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Disp16.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Keyboard.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Count.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Main.r90</file>
+      <file>$PROJ_DIR$\LCD1602\List\Count.lst</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Sound.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Disp.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Count.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Port.r90</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\FC-510.pbd</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Lcd16xx.r90</file>
+      <file>$PROJ_DIR$\LCD1602\List\Port.lst</file>
+      <file>$PROJ_DIR$\LCD1602\List\Menu.lst</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Main.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Lcd16xx.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Sound.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\List\FC-510.map</file>
+      <file>$PROJ_DIR$\LCD1602\List\Main.lst</file>
+      <file>$PROJ_DIR$\LCD1602\List\Disp.lst</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Lcd10.r90</file>
+      <file>$PROJ_DIR$\Lcd10.c</file>
+      <file>$PROJ_DIR$\Lcd16xx.c</file>
+      <file>$PROJ_DIR$\Main.c</file>
+      <file>$PROJ_DIR$\Menu.c</file>
+      <file>$PROJ_DIR$\Port.c</file>
+      <file>$PROJ_DIR$\Sound.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Count.h</file>
+      <file>$PROJ_DIR$\Main.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
+      <file>$PROJ_DIR$\Lcd.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
+      <file>$PROJ_DIR$\Menu.h</file>
+      <file>$PROJ_DIR$\Keyboard.h</file>
+      <file>$PROJ_DIR$\Sound.h</file>
+      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iom8.inc</file>
+      <file>$PROJ_DIR$\Port.h</file>
+      <file>$PROJ_DIR$\Disp.h</file>
+      <file>$PROJ_DIR$\Disp16.c</file>
+      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Port.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\List\Disp16.lst</file>
+      <file>$PROJ_DIR$\LCD1602\Obj\Disp.pbi</file>
+      <file>$PROJ_DIR$\LCD1602\List\Sound.lst</file>
+      <file>$PROJ_DIR$\LCD1602\List\Lcd16xx.lst</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Disp.c</name>
+      <outputs>
+        <tool>
           <name>BICOMP</name>
-          <file> 25 23 24 19 49 32 22 29 31 26</file>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 28 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 52 45 51</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 52 45 51</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Keyboard.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 6 11</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 48</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 48</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Count.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 14 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 41</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\LCD1602\Exe\FC-510.hex</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 46 37 12 16 11 20 13 4 18 15 44</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 5 26</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Lcd10.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Lcd16xx.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 59 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 45</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 45</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 27 13</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 41 47 49</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 41 47 49</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Menu.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 22 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 47 48 52 51 49 41</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 47 48 52 51 49 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Port.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 21 18</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 51 52 48</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 51 52 48</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Sound.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 58 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 49</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 49</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Disp16.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 56 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 54 40 50 38 43 39 36 52 48</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 42 54 40 50 38 43 39 36 52 48</file>
         </tool>
       </inputs>
     </file>

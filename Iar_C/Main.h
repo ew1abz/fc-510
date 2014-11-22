@@ -17,11 +17,19 @@
 
 //------------------------------- Constants: ---------------------------------
 
+//#define       F_CLK    5.000 //clock frequency, MHz
 //#define	F_CLK   10.000 //clock frequency, MHz
+//#define	F_CLK   12.000 //clock frequency, MHz
 //#define	F_CLK   12.288 //clock frequency, MHz
 #define	F_CLK   12.800 //clock frequency, MHz
 //#define	F_CLK   13.000 //clock frequency, MHz
 //#define	F_CLK   14.400 //clock frequency, MHz
+//#define       F_CLK   15.000 //clock frequency, MHz
+//#define       F_CLK   16.000 //clock frequency, MHz
+//#define	F_CLK   16.368 //clock frequency, MHz
+//#define	F_CLK   16.369 //clock frequency, MHz
+//#define	F_CLK   16.384 //clock frequency, MHz
+//#define	F_CLK   17.500 //clock frequency, MHz
 
 #define T_SYS    500.0 //system tick, uS
 
@@ -126,6 +134,7 @@
 #define LO(x) (x & 0xFF)
 #define Delay_us(x) __delay_cycles((int)(x * F_CLK + 0.5))
 #define ms2sys(x) ((int)(1E3 * x / T_SYS))
+#define ABS(x) ((x < 0)? (-x) : (x))
 
 //----------------------------------------------------------------------------
 

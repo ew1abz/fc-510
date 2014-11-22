@@ -1,17 +1,13 @@
 //----------------------------------------------------------------------------
 
-//10-digit LCD support module
+//LCD MT10-T7 support module
 
 //----------------------------------------------------------------------------
 
 #include "Main.h"
-#include "Disp.h"
-#include "Usart.h"
+#include "Lcd.h"
 
 //----------------------------- Constants: -----------------------------------
-
-#define LCD_SIZE 10        //size of LCD
-#define DIGITS   10        //number of BCD digits 
 
 //Segments layout:
 //
@@ -34,34 +30,12 @@
 #define _G_ 0x01
 #define _H_ 0x10
 
-//------------------------------ Variables: ----------------------------------
-
-static char Buf[LCD_SIZE+2]; //display copy for send to USART + 2 points
-static char Dig[LCD_SIZE]; //display copy
-static char Bcd[DIGITS];   //hex to bcd buffer
-static char Pos;           //current position (left to right, 0..9)
-
 //------------------------- Function prototypes: -----------------------------
 
 void LCD_Write(char d);       //write data to LCD
 void LCD_WriteNibble(char d); //write nibble to LCD
 void LCD_WriteAddres(char d); //write address to LCD
-void Long2BCD(unsigned long x, char *buff); //convert long to BCD
 char Encode(char s);          //encode symbol to 7-segment code
-
-//------------------------- Write nibble to LCD: -----------------------------
-
-void LCD_WriteNibble(char d)
-{
-  LCD_Write((d & 0x0F) | 0x10); //address = 1
-}
-
-//------------------------- Write address to LCD: ----------------------------
-
-void LCD_WriteAddres(char d)
-{
-  LCD_Write(d & 0x0F);
-}
 
 //-------------------------- Write data to LCD: ------------------------------
 
@@ -80,29 +54,18 @@ void LCD_Write(char d)
   Port_LOAD_1;
 }
 
-//------------------------- Long2BCD conversion: -----------------------------
+//------------------------- Write nibble to LCD: -----------------------------
 
-//Convert binary digit to BCD:
-//x - input binary digit (32 bits, unsigned)
-//buff - output array (10 digits)
-
-void Long2BCD(unsigned long x, char *buff)
+void LCD_WriteNibble(char d)
 {
-  for(char i = 0; i < 10; i++)
-    buff[i] = 0;                      //output buffer clear
-  for(char i = 0; i < 32; i++)        //cycle for input bits count
-  {
-    char c = (x >> 31) & 1;           //save carry
-    x = x << 1;                       //input value shift
-    for(signed char p = 9; p >= 0; p--) //cycle for digits number
-    {
-      char s = buff[p];               //read digit
-      s = (s << 1) | c; c = 0;        //shift with carry
-      if(s > 9) { s += 0x06; c = 1; } //digit correction
-      s &= 0x0F;                      //select nibble
-      buff[p] = s;                    //save digit
-    }
-  }
+  LCD_Write((d & 0x0F) | 0x10); //address = 1
+}
+
+//------------------------- Write address to LCD: ----------------------------
+
+void LCD_WriteAddres(char d)
+{
+  LCD_Write(d & 0x0F);
 }
 
 //--------------------------- Load copy to LCD: ------------------------------
@@ -152,8 +115,8 @@ char Encode(char s)
   case 'D':
   case 'd': d = 0x0D; break; //character "d"
   case 'e': d = 0x0E; break; //character "E"
-  case 'f':
-  case 'F': d = 0x0F; break; //character "F"
+  case 'F':
+  case 'f': d = 0x0F; break; //character "F"
   case 'G': d = 0x10; break; //character "G"
   case 'H': d = 0x11; break; //character "H"
   case 'I': d = 0x01; break; //character "I"
@@ -165,7 +128,7 @@ char Encode(char s)
   case 'R':
   case 'r': d = 0x16; break; //character "r"
   case 't': d = 0x17; break; //character "t"
-  case 'u': d = 0x18; break; //character "u"
+  case 'u': d = 0x18; break; //character "t"
   case '-': d = 0x19; break; //character "-"
   case ' ': d = 0x1A; break; //character "blank"
   }
@@ -179,114 +142,32 @@ char Encode(char s)
 //--------------------------- Exported functions: ----------------------------
 //----------------------------------------------------------------------------
 
-//----------------------------- Display init: --------------------------------
+//-------------------------------- LCD init: ---------------------------------
 
-void Disp_Init(void)
+void LCD_Init(void)
 {
   LCD_WriteAddres(0x0F);     //write BLK register address
   LCD_WriteNibble(0x0F);     //0x0F - enable bus
-  Disp_Clear();              //clear display
 }
 
-//---------------------------- Display update: -------------------------------
+//--------------------------- Set LCD position: ------------------------------
 
-void Disp_Update(void)
+//pos = 1..10
+
+void LCD_Pos(char pos)
 {
-  LCD_WriteAddres(0);        //write SG1 address
-  for(char i = 0; i < LCD_SIZE; i++)
-  {
-    char d = Encode(Dig[i]);
-    LCD_WriteNibble(d);      //write nibble from d to LCD
-    d = __swap_nibbles(d);
-    LCD_WriteNibble(d);      //write nibble from d to LCD
-  }
-  // output to USART
-  char i, j;
-  for(i = 0, j = 0; i < LCD_SIZE; i++)
-  {
-    char d = (Dig[i] & ~POINT);
-    if(d < 10) Buf[j++] = d + 0x30; else Buf[j++] = d;
-    if(Dig[i] & POINT) Buf[j++] = '.';
-  }
-  USART_Update(Buf, j); 
+  pos = pos - 1;
+  LCD_WriteAddres(pos);      //write SG1 address
 }
 
-//---------------------------- Clear display: --------------------------------
+//---------------------- Write data to LCD (RS = 1): -------------------------
 
-void Disp_Clear(void)
+void LCD_WrData(char d)
 {
-  for(char i = 0; i < 10; i++)
-    Dig[i] = ' ';
-  Pos = 0;
-  Disp_Update();
-}
-
-//----------------------------- Set position: --------------------------------
-
-void Disp_SetPos(char p)
-{
-  if(p < 1) p = 1;
-  if(p > LCD_SIZE) p = LCD_SIZE;
-  Pos = p - 1;
-}
-
-// ---------------------------- Display char: --------------------------------
-
-void Disp_PutChar(char c)
-{
-  if(Pos < LCD_SIZE)
-  {
-    Dig[Pos++] = c;
-  }
-}
-
-// ---------------------- Display string from flash: -------------------------
-
-void Disp_PutString(char __flash *s)
-{
-  while(*s)
-  {
-    Disp_PutChar(*s);
-    s++;
-  }
-}
-
-//----------------------------- Display value: -------------------------------
-
-//s - start position 1..10
-//p - point position 1..10, 0 - no point
-//v - value ±1999999999
-
-void Disp_Val(char s, char p, long v)
-{
-  char i; bool minus = 0;
-  s--; p--; //align to 0..9 range
- if(v < 0) { v = -v; minus = 1; }
-  Long2BCD(v, Bcd);
-  //check for overflow:
-  for(i = 0; i < s; i++)
-  {
-    if(Bcd[i]) break;
-  }
-  //if overflow, display dashes:
-  if(i != s)
-  {
-    for(i = s; i < DIGITS; i++)
-      Dig[i] = '-' | ((i == p)? POINT : 0);
-  }
-  //if not overflow, display value:
-  else
-  {
-    char ch = ' ';
-    for(i = s; i < DIGITS; i++)
-    {
-      char d = Bcd[i];
-      if(minus && (ch == ' ') && (d || (i == p)))
-        Dig[i - 1] = '-';
-      if((ch != ' ') || d || (i == p)) ch = d;
-      Dig[i] = ch | ((i == p)? POINT : 0);
-    }
-  }
+  char c = Encode(d);
+  LCD_WriteNibble(c);        //write nibble from d to LCD
+  c = __swap_nibbles(c);
+  LCD_WriteNibble(c);        //write nibble from d to LCD
 }
 
 //----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------
 
-//LCD support module: header file
+//Display support module: header file
 
 //----------------------------------------------------------------------------
 
@@ -20,6 +20,7 @@ void Disp_SetPos(char p);   //set display position
 void Disp_PutChar(char ch); //display char
 void Disp_PutString(char __flash *s);  //display string
 void Disp_Val(char s, char p, long t); //display value
+char Disp_GetChar(char n);  //get char from display buffer
 
 //----------------------------------------------------------------------------
 
